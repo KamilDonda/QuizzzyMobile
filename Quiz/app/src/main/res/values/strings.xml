@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Quiz</string>
+    <string name="app_name">Quizzzy</string>
 
     <!-- Buttons -->
-    <string name="quiz">Quiz!</string>
+    <string name="quiz">Quizzzy!</string>
     <string name="show_history">Show history</string>
     <string name="about">About</string>
 
