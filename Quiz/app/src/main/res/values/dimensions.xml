@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="logo_size">200dp</dimen>
+
+    <!-- Buttons -->
+    <dimen name="button_size">300dp</dimen>
+    <dimen name="button_font_size">25sp</dimen>
+
+</resources>

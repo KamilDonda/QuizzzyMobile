@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Quiz</string>
+
+    <!-- Buttons -->
+    <string name="quiz">Quiz!</string>
+    <string name="show_history">Show history</string>
+    <string name="about">About</string>
+
 </resources>
