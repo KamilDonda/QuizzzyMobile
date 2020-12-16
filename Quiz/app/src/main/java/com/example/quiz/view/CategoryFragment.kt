@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
+import com.example.quiz.model.Categories
 import com.example.quiz.view_model.CategoryAdapter
 import kotlinx.android.synthetic.main.fragment_category.*
 
@@ -21,7 +22,7 @@ class CategoryFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        val categories = listOf("Category1", "Category2", "Category3", "Category4", "Category5")
+        val categories = Categories.listOfCategories
 
         myLayoutManager = LinearLayoutManager(context)
         myAdapter = CategoryAdapter(categories)
