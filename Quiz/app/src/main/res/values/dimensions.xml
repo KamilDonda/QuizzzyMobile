@@ -9,4 +9,7 @@
     <!-- Titles -->
     <dimen name="title_font_size">30sp</dimen>
 
+    <!-- Space -->
+    <dimen name="margin_top_rv">50dp</dimen>
+
 </resources>
