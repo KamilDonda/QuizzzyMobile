@@ -25,6 +25,8 @@ class CategoryAdapter(val categories: List<Category>)
         val button = holder.itemView.findViewById<Button>(R.id.button_category)
 
         button.text = categories.get(position).name
+
+        button.setOnClickListener {  }
     }
 
 }
