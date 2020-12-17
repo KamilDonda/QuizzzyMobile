@@ -18,7 +18,6 @@ class CategoryFragment : Fragment() {
 
     private lateinit var viewModel: CategoryViewModel
     private lateinit var myAdapter: CategoryAdapter
-    private lateinit var myLayoutManager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -27,7 +26,6 @@ class CategoryFragment : Fragment() {
         val categories = listOfCategories
 
         viewModel = ViewModelProvider(requireActivity()).get(CategoryViewModel::class.java)
-        myLayoutManager = LinearLayoutManager(context)
         myAdapter = CategoryAdapter(categories, viewModel)
 
         return inflater.inflate(R.layout.fragment_category, container, false)
@@ -37,7 +35,6 @@ class CategoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = recyclerView_category.apply {
-            layoutManager = myLayoutManager
             adapter = myAdapter
         }
     }
