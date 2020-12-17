@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
 import com.example.quiz.model.Category
 
-class CategoryAdapter(val categories: List<Category>)
+class CategoryAdapter(val categories: List<Category>, val viewModel: CategoryViewModel)
     : RecyclerView.Adapter<CategoryAdapter.Holder>() {
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view)
@@ -26,7 +26,7 @@ class CategoryAdapter(val categories: List<Category>)
 
         button.text = categories.get(position).name
 
-        button.setOnClickListener {  }
+        button.setOnClickListener { viewModel.setCurrentCategory(categories.get(position)) }
     }
 
 }
