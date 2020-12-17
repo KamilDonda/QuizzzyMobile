@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
 import com.example.quiz.model.Category
-import com.example.quiz.view_model.CategoryAdapter
-import com.example.quiz.view_model.CategoryViewModel
+import com.example.quiz.view_model.adapters.CategoryAdapter
+import com.example.quiz.view_model.vm.CategoryViewModel
 import kotlinx.android.synthetic.main.fragment_category.*
 
 class CategoryFragment : Fragment() {
