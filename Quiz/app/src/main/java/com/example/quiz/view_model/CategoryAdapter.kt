@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
+import com.example.quiz.model.Category
 
-class CategoryAdapter(val categories: List<String>)
+class CategoryAdapter(val categories: List<Category>)
     : RecyclerView.Adapter<CategoryAdapter.Holder>() {
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view)
@@ -23,7 +24,7 @@ class CategoryAdapter(val categories: List<String>)
     override fun onBindViewHolder(holder: CategoryAdapter.Holder, position: Int) {
         val button = holder.itemView.findViewById<Button>(R.id.button_category)
 
-        button.text = categories.get(position)
+        button.text = categories.get(position).name
     }
 
 }
