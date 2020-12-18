@@ -8,5 +8,6 @@
 
     <!-- Titles -->
     <string name="select_category">Select category</string>
+    <string name="about_title">About</string>
 
 </resources>
