@@ -13,10 +13,17 @@
         <action
             android:id="@+id/action_mainFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.example.quiz.view.CategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.quiz.view.AboutFragment"
+        android:label="AboutFragment" />
 </navigation>
