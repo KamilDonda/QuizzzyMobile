@@ -34,5 +34,13 @@
         android:id="@+id/difficultyLevelFragment"
         android:name="com.example.quiz.view.DifficultyLevelFragment"
         android:label="fragment_difficulty_level"
-        tools:layout="@layout/fragment_difficulty_level" />
+        tools:layout="@layout/fragment_difficulty_level" >
+        <action
+            android:id="@+id/action_difficultyLevelFragment_to_loadingFragment"
+            app:destination="@id/loadingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loadingFragment"
+        android:name="com.example.quiz.view.LoadingFragment"
+        android:label="LoadingFragment" />
 </navigation>

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
 import com.example.quiz.view_model.vm.DifficultyLevelViewModel
@@ -26,7 +27,10 @@ class DifficultyLevelAdapter(val difficultyLevels: List<String>, val viewModel: 
 
         button.text = difficultyLevels.get(position)
 
-        button.setOnClickListener { viewModel.setCurrentDifficultyLevel(difficultyLevels.get(position)) }
+        button.setOnClickListener {
+            viewModel.setCurrentDifficultyLevel(difficultyLevels.get(position))
+            it.findNavController().navigate(R.id.action_difficultyLevelFragment_to_loadingFragment)
+        }
     }
 
 }
