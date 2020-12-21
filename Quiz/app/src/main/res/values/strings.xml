@@ -8,5 +8,17 @@
 
     <!-- Titles -->
     <string name="select_category">Select category</string>
+    <string name="about_title">About</string>
+
+    <!-- About -->
+    <string name="github">Github</string>
+    <string name="polsl">Silesian Univeristy of Technology</string>
+    <string name="wydzial">Wydział Matematyki Stosowanej</string>
+    <string name="api">Link do API</string>
+    <string name="opis">Opis aplikacji</string>
+    <string name="authors">Authors:</string>
+    <string name="kamil">Kamil Donda</string>
+    <string name="remigiusz">Remigiusz Drobinski</string>
+    <string name="robert">Robert Kwoll</string>
 
 </resources>
