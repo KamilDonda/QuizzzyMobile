@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_difficulty_level.*
 class DifficultyLevelFragment : Fragment() {
 
     private lateinit var viewModel: DifficultyLevelViewModel
+    private lateinit var viewModelCategory: CategoryViewModel
     private lateinit var myAdapter: DifficultyLevelAdapter
     private lateinit var recyclerView: RecyclerView
 
@@ -27,6 +28,7 @@ class DifficultyLevelFragment : Fragment() {
         val levels = listOf("Easy", "Medium", "Hard", "All")
 
         viewModel = ViewModelProvider(requireActivity()).get(DifficultyLevelViewModel::class.java)
+        viewModelCategory = ViewModelProvider(requireActivity()).get(CategoryViewModel::class.java)
         myAdapter = DifficultyLevelAdapter(levels, viewModel)
 
         return inflater.inflate(R.layout.fragment_difficulty_level, container, false)
@@ -38,5 +40,7 @@ class DifficultyLevelFragment : Fragment() {
         recyclerView = recyclerView_difficulty.apply {
             adapter = myAdapter
         }
+
+        textViewSelectedCategory.text = viewModelCategory.currentCategory.value!!.name
     }
 }
