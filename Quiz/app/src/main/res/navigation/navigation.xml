@@ -29,10 +29,20 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.quiz.view.AboutFragment"
-        android:label="AboutFragment" />
+        android:label="AboutFragment"
+        tools:layout="@layout/fragment_about"/>
     <fragment
         android:id="@+id/difficultyLevelFragment"
         android:name="com.example.quiz.view.DifficultyLevelFragment"
         android:label="fragment_difficulty_level"
-        tools:layout="@layout/fragment_difficulty_level" />
+        tools:layout="@layout/fragment_difficulty_level" >
+        <action
+            android:id="@+id/action_difficultyLevelFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.example.quiz.view.QuestionFragment"
+        android:label="fragment_question"
+        tools:layout="@layout/fragment_question" />
 </navigation>
