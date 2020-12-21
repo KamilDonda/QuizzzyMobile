@@ -8,9 +8,11 @@
 
     <!-- Titles -->
     <dimen name="title_font_size">30sp</dimen>
+    <dimen name="subtitle_font_size">20sp</dimen>
 
     <!-- Space -->
     <dimen name="margin_top_rv">50dp</dimen>
     <dimen name="rv_height">600dp</dimen>
+    <dimen name="rv_padding_horizontal">50dp</dimen>
 
 </resources>
