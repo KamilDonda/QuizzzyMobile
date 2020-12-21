@@ -21,9 +21,18 @@
         android:id="@+id/categoryFragment"
         android:name="com.example.quiz.view.CategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_difficultyLevelFragment"
+            app:destination="@id/difficultyLevelFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.quiz.view.AboutFragment"
         android:label="AboutFragment" />
+    <fragment
+        android:id="@+id/difficultyLevelFragment"
+        android:name="com.example.quiz.view.DifficultyLevelFragment"
+        android:label="fragment_difficulty_level"
+        tools:layout="@layout/fragment_difficulty_level" />
 </navigation>
