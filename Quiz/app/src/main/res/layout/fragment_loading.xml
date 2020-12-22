@@ -7,26 +7,24 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textViewSelectedCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Science &amp; Nature"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/textViewSelectedLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Medium"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSelectedCategory" />
 
     <ProgressBar
         android:id="@+id/progressBar"
