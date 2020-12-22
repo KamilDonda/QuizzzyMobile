@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.quiz.R
 import com.example.quiz.view_model.vm.CategoryViewModel
 import com.example.quiz.view_model.vm.DifficultyLevelViewModel
-import kotlinx.android.synthetic.main.fragment_difficulty_level.*
 import kotlinx.android.synthetic.main.fragment_difficulty_level.textViewSelectedCategory
 import kotlinx.android.synthetic.main.fragment_loading.*
 
