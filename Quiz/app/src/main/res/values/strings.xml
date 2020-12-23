@@ -24,4 +24,7 @@
     <string name="remigiusz">Remigiusz Drobinski</string>
     <string name="robert">Robert Kwoll</string>
 
+    <!-- Other -->
+    <string name="load">Quiz download in progress...</string>
+
 </resources>

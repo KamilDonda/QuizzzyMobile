@@ -29,7 +29,7 @@ class DifficultyLevelAdapter(val difficultyLevels: List<String>, val viewModel: 
 
         button.setOnClickListener {
             viewModel.setCurrentDifficultyLevel(difficultyLevels.get(position))
-            it.findNavController().navigate(R.id.action_difficultyLevelFragment_to_questionFragment)
+            it.findNavController().navigate(R.id.action_difficultyLevelFragment_to_loadingFragment)
         }
     }
 

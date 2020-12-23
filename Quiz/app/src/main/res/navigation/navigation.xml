@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_mainFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
@@ -37,12 +40,15 @@
         android:label="fragment_difficulty_level"
         tools:layout="@layout/fragment_difficulty_level" >
         <action
-            android:id="@+id/action_difficultyLevelFragment_to_questionFragment"
-            app:destination="@id/questionFragment" />
+            android:id="@+id/action_difficultyLevelFragment_to_loadingFragment"
+            app:destination="@id/loadingFragment" />
     </fragment>
     <fragment
-        android:id="@+id/questionFragment"
-        android:name="com.example.quiz.view.QuestionFragment"
-        android:label="fragment_question"
-        tools:layout="@layout/fragment_question" />
+        android:id="@+id/loadingFragment"
+        android:name="com.example.quiz.view.LoadingFragment"
+        android:label="LoadingFragment" />
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.example.quiz.view.ResultFragment"
+        android:label="ResultFragment" />
 </navigation>
