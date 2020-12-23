@@ -1,11 +1,14 @@
 package com.example.quiz.view
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.quiz.R
 import com.example.quiz.view_model.vm.CategoryViewModel
 import com.example.quiz.view_model.vm.DifficultyLevelViewModel
@@ -32,5 +35,10 @@ class LoadingFragment : Fragment() {
 
         textViewSelectedLevel.text = viewModelLevel.currentDifficultyLevel.value!!
         textViewSelectedCategory.text = viewModelCategory.currentCategory.value!!.name
+
+        // navigate to another fragment after 2 seconds
+        Handler().postDelayed({
+            findNavController().navigate(R.id.action_loadingFragment_to_questionFragment)
+        }, 2000)
     }
 }
