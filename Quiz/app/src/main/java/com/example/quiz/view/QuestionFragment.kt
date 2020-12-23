@@ -27,5 +27,7 @@ class QuestionFragment : Fragment() {
         ObjectAnimator.ofInt(progressBar_timer, "progress", TIME * 100)
                 .setDuration(TIME * 1000L)
                 .start()
+
+        textView_Question.text = "Which is the chemical name of H20?"
     }
 }

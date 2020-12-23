@@ -16,5 +16,6 @@
     <dimen name="rv_height">600dp</dimen>
     <dimen name="rv_padding_horizontal">50dp</dimen>
     <dimen name="pb_width">300dp</dimen>
+    <dimen name="pb_padding">25dp</dimen>
 
 </resources>

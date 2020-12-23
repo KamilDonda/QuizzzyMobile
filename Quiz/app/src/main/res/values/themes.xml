@@ -47,4 +47,12 @@
     <style name="ProgressBarStyle" parent="Theme.AppCompat.Light">
         <item name="colorAccent">@color/primary_color</item>
     </style>
+
+    <style name="QuestionStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/subtitle_font_size</item>
+        <item name="android:padding">@dimen/pb_padding</item>
+    </style>
+
 </resources>
