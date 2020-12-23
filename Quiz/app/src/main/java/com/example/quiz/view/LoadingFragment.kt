@@ -36,9 +36,9 @@ class LoadingFragment : Fragment() {
         textViewSelectedLevel.text = viewModelLevel.currentDifficultyLevel.value!!
         textViewSelectedCategory.text = viewModelCategory.currentCategory.value!!.name
 
-        // navigate to another fragment after 2 seconds
+        // navigate to another fragment after X seconds
         Handler().postDelayed({
             findNavController().navigate(R.id.action_loadingFragment_to_questionFragment)
-        }, 2000)
+        }, 500)
     }
 }
