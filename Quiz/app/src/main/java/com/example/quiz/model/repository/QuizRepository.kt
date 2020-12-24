@@ -8,6 +8,15 @@ class QuizRepository {
     companion object{
 
         suspend fun getQuiz(): Quiz
-                = QuizService.api.getQuiz().awaitResponse().body()!!
+                = QuizService.api
+                .getQuiz().awaitResponse().body()!!
+
+        suspend fun getQuizFromCategory(category: Int): Quiz
+                = QuizService.api.getQuizFromCategory(category)
+                .awaitResponse().body()!!
+
+        suspend fun getQuizFromCategoryWithDiffcultyLevel(category: Int, diffculty: String): Quiz
+                = QuizService.api.getQuizFromCategoryWithDiffcultyLevel(category, diffculty)
+                .awaitResponse().body()!!
     }
 }

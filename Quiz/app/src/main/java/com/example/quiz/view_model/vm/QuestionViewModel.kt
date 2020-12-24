@@ -17,8 +17,18 @@ class QuestionViewModel(application: Application): AndroidViewModel(application)
     val questionList: LiveData<List<Question>>
     get() = _questionList
 
-    init {
-        getQuestionList()
+    fun setCategoryAndDifficulty(category: Int? = null, difficulty: String = "All") {
+        if (category != null) {
+            if(difficulty == "All") {
+                getQuestionList(category)
+            }
+            else {
+                getQuestionList(category, difficulty)
+            }
+        }
+        else {
+            getQuestionList()
+        }
     }
 
     // download data from API and save it into _questionList
@@ -26,7 +36,29 @@ class QuestionViewModel(application: Application): AndroidViewModel(application)
         viewModelScope.launch {
             // our Quiz has two properties: response_code and results
             // results is a list of Questions
-            _questionList.value = QuizRepository.getQuiz().results
+            _questionList.value = QuizRepository
+                    .getQuiz()
+                    .results
+        }
+    }
+
+    fun getQuestionList(category: Int){
+        viewModelScope.launch {
+            // our Quiz has two properties: response_code and results
+            // results is a list of Questions
+            _questionList.value = QuizRepository
+                    .getQuizFromCategory(category)
+                    .results
+        }
+    }
+
+    fun getQuestionList(category: Int, difficulty: String){
+        viewModelScope.launch {
+            // our Quiz has two properties: response_code and results
+            // results is a list of Questions
+            _questionList.value = QuizRepository
+                    .getQuizFromCategoryWithDiffcultyLevel(category, difficulty)
+                    .results
         }
     }
 }

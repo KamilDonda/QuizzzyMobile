@@ -23,8 +23,6 @@ class QuestionFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(QuestionViewModel::class.java)
 
-        viewModel.questionList.observe(viewLifecycleOwner, Observer {})
-
         return inflater.inflate(R.layout.fragment_question, container, false)
     }
 
