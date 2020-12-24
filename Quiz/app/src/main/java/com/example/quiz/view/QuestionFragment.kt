@@ -47,7 +47,11 @@ class QuestionFragment : Fragment() {
                 .start()
 
         viewModel.quizList.observe(viewLifecycleOwner, Observer {
-            myAdapter = AnswerAdapter(viewModel.getCurrentAnswers(), viewModel, viewModel.getCurrentCorrectAnswer())
+            myAdapter = AnswerAdapter(
+                    viewModel.getCurrentAnswers(),
+                    viewModel,
+                    Html.fromHtml(viewModel.getCurrentCorrectAnswer(), Html.FROM_HTML_MODE_LEGACY).toString(),
+                    requireContext())
             myAdapter.notifyDataSetChanged()
 
             textView_Question.text = Html.fromHtml(viewModel.getCurrentQuestion(), Html.FROM_HTML_MODE_LEGACY)
