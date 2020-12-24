@@ -7,7 +7,7 @@
     android:gravity="center">
 
     <Button
-        android:id="@+id/button_category"
+        android:id="@+id/button_in_row"
         style="@style/ButtonStyle"/>
 
 </LinearLayout>

@@ -1,16 +1,19 @@
 package com.example.quiz.view_model.adapters
 
+import android.os.Build
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
-import com.example.quiz.view_model.vm.DifficultyLevelViewModel
+import com.example.quiz.view_model.vm.QuestionViewModel
 
-class DifficultyLevelAdapter(val difficultyLevels: List<String>, val viewModel: DifficultyLevelViewModel)
-    : RecyclerView.Adapter<DifficultyLevelAdapter.Holder>() {
+class AnswerAdapter(val answers: List<String>, val viewModel: QuestionViewModel, val correct: String)
+    : RecyclerView.Adapter<AnswerAdapter.Holder>() {
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -20,17 +23,14 @@ class DifficultyLevelAdapter(val difficultyLevels: List<String>, val viewModel: 
         return Holder(view)
     }
 
-    override fun getItemCount(): Int = difficultyLevels.size
+    override fun getItemCount(): Int = answers.size
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val button = holder.itemView.findViewById<Button>(R.id.button_in_row)
 
-        button.text = difficultyLevels.get(position)
+        button.text = Html.fromHtml(answers.get(position), Html.FROM_HTML_MODE_LEGACY)
 
-        button.setOnClickListener {
-            viewModel.setCurrentDifficultyLevel(difficultyLevels.get(position))
-            it.findNavController().navigate(R.id.action_difficultyLevelFragment_to_loadingFragment)
-        }
+        button.setOnClickListener {}
     }
-
 }

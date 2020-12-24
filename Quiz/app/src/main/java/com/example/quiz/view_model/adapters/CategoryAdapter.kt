@@ -24,7 +24,7 @@ class CategoryAdapter(val categories: List<Category>, val viewModel: CategoryVie
     override fun getItemCount(): Int = categories.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val button = holder.itemView.findViewById<Button>(R.id.button_category)
+        val button = holder.itemView.findViewById<Button>(R.id.button_in_row)
 
         button.text = categories.get(position).name
 

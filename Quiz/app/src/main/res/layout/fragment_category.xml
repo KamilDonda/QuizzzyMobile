@@ -8,7 +8,7 @@
     tools:context=".view.CategoryFragment">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_currentQuestion"
         style="@style/TitleStyle"
         android:text="@string/select_category"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,6 +24,6 @@
         android:layout_marginTop="@dimen/margin_top_rv"
         tools:listitem="@layout/question_row"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_currentQuestion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

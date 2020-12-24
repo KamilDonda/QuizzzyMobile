@@ -4,7 +4,6 @@ import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +11,17 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
+import com.example.quiz.view_model.adapters.AnswerAdapter
 import com.example.quiz.view_model.vm.QuestionViewModel
 import kotlinx.android.synthetic.main.fragment_question.*
 
 class QuestionFragment : Fragment() {
 
     private lateinit var viewModel: QuestionViewModel
+    private lateinit var myAdapter: AnswerAdapter
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -44,12 +47,19 @@ class QuestionFragment : Fragment() {
                 .start()
 
         viewModel.quizList.observe(viewLifecycleOwner, Observer {
+            myAdapter = AnswerAdapter(viewModel.getCurrentAnswers(), viewModel, viewModel.getCurrentCorrectAnswer())
+            myAdapter.notifyDataSetChanged()
+
             textView_Question.text = Html.fromHtml(viewModel.getCurrentQuestion(), Html.FROM_HTML_MODE_LEGACY)
-            Log.v("TAGGG", "${viewModel.getCurrentAnswers()}\n${viewModel.getCurrentCorrectAnswer()}\n${viewModel.currentQuizNumber}")
-            textView.text = "${getString(R.string.question)} ${viewModel.currentQuizNumber + 1}"
-            textViewCategory.text = viewModel.getCurrentCategory()
+//            Log.v("TAGGG", "${viewModel.getCurrentAnswers()}\n${viewModel.getCurrentCorrectAnswer()}\n${viewModel.currentQuizNumber}")
+            textView_currentQuestion.text = "${getString(R.string.question)} ${viewModel.currentQuizNumber + 1}"
+            textViewCategory.text = Html.fromHtml(viewModel.getCurrentCategory(), Html.FROM_HTML_MODE_LEGACY)
             // tymczasowo tutaj jest ta zmienna, trzeba będzie ją przenieść do onClicka w buttonie z odpowiedzią
             viewModel.currentQuizNumber++
+
+            recyclerView = recyclerView_answer.apply {
+                adapter = myAdapter
+            }
         })
     }
 }
