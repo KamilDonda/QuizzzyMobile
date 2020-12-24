@@ -47,6 +47,7 @@ class QuestionFragment : Fragment() {
             textView_Question.text = Html.fromHtml(viewModel.getCurrentQuestion(), Html.FROM_HTML_MODE_LEGACY)
             Log.v("TAGGG", "${viewModel.getCurrentAnswers()}\n${viewModel.getCurrentCorrectAnswer()}\n${viewModel.currentQuizNumber}")
             textView.text = "${getString(R.string.question)} ${viewModel.currentQuizNumber + 1}"
+            textViewCategory.text = viewModel.getCurrentCategory()
             // tymczasowo tutaj jest ta zmienna, trzeba będzie ją przenieść do onClicka w buttonie z odpowiedzią
             viewModel.currentQuizNumber++
         })

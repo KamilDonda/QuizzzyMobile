@@ -74,4 +74,7 @@ class QuestionViewModel(application: Application): AndroidViewModel(application)
         list.shuffle()
         return list
     }
+
+    fun getCurrentCategory()
+            = _quizList.value!!.get(currentQuizNumber).category
 }
