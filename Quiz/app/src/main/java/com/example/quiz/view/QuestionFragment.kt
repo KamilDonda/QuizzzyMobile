@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,16 @@ class QuestionFragment : Fragment() {
     private lateinit var viewModel: QuestionViewModel
     private lateinit var myAdapter: AnswerAdapter
     private lateinit var recyclerView: RecyclerView
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // in here you can do logic when backPress is clicked
+            }
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -58,8 +69,6 @@ class QuestionFragment : Fragment() {
 //            Log.v("TAGGG", "${viewModel.getCurrentAnswers()}\n${viewModel.getCurrentCorrectAnswer()}\n${viewModel.currentQuizNumber}")
             textView_currentQuestion.text = "${getString(R.string.question)} ${viewModel.currentQuizNumber + 1}"
             textViewCategory.text = Html.fromHtml(viewModel.getCurrentCategory(), Html.FROM_HTML_MODE_LEGACY)
-            // tymczasowo tutaj jest ta zmienna, trzeba będzie ją przenieść do onClicka w buttonie z odpowiedzią
-            viewModel.currentQuizNumber++
 
             recyclerView = recyclerView_answer.apply {
                 adapter = myAdapter
