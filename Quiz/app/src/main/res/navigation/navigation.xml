@@ -16,9 +16,6 @@
         <action
             android:id="@+id/action_mainFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_resultFragment"
-            app:destination="@id/resultFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
@@ -32,7 +29,8 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.quiz.view.AboutFragment"
-        android:label="AboutFragment" />
+        android:label="AboutFragment"
+        tools:layout="@layout/fragment_about"/>
     <fragment
         android:id="@+id/difficultyLevelFragment"
         android:name="com.example.quiz.view.DifficultyLevelFragment"
@@ -45,9 +43,27 @@
     <fragment
         android:id="@+id/loadingFragment"
         android:name="com.example.quiz.view.LoadingFragment"
-        android:label="LoadingFragment" />
+        android:label="LoadingFragment"
+        tools:layout="@layout/fragment_loading">
+        <action
+            android:id="@+id/action_loadingFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/resultFragment"
         android:name="com.example.quiz.view.ResultFragment"
-        android:label="ResultFragment" />
+        android:label="ResultFragment"
+        tools:layout="@layout/fragment_result"/>
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.example.quiz.view.QuestionFragment"
+        android:label="fragment_question"
+        tools:layout="@layout/fragment_question" >
+        <action
+            android:id="@+id/action_questionFragment_self"
+            app:destination="@id/questionFragment" />
+        <action
+            android:id="@+id/action_questionFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
 </navigation>

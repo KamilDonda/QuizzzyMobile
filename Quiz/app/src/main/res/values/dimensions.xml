@@ -9,10 +9,13 @@
     <!-- Titles -->
     <dimen name="title_font_size">30sp</dimen>
     <dimen name="subtitle_font_size">20sp</dimen>
+    <dimen name="category_font_size">16sp</dimen>
 
     <!-- Space -->
     <dimen name="margin_top_rv">50dp</dimen>
     <dimen name="rv_height">600dp</dimen>
     <dimen name="rv_padding_horizontal">50dp</dimen>
+    <dimen name="pb_width">300dp</dimen>
+    <dimen name="pb_padding">25dp</dimen>
 
 </resources>

@@ -23,7 +23,7 @@ class DifficultyLevelAdapter(val difficultyLevels: List<String>, val viewModel: 
     override fun getItemCount(): Int = difficultyLevels.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val button = holder.itemView.findViewById<Button>(R.id.button_category)
+        val button = holder.itemView.findViewById<Button>(R.id.button_in_row)
 
         button.text = difficultyLevels.get(position)
 
