@@ -25,9 +25,9 @@ class QuestionViewModel(application: Application): AndroidViewModel(application)
     val quizList: LiveData<List<Quiz>>
     get() = _quizList
 
-    fun setCategoryAndDifficulty(category: Int? = null, difficulty: String = "All") {
+    fun setCategoryAndDifficulty(category: Int? = null, difficulty: String = "all") {
         if (category != null) {
-            if(difficulty == "All") {
+            if(difficulty == "all") {
                 setQuizList(category)
             }
             else {
