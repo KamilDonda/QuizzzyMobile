@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.quiz.model.converters.Converters
 import com.example.quiz.model.dao.ResultDao
 import com.example.quiz.model.entities.Result
 
@@ -12,6 +14,7 @@ import com.example.quiz.model.entities.Result
     version = 1,
     exportSchema = false
 )
+@TypeConverters(Converters::class)
 abstract class ResultDatabase: RoomDatabase() {
     abstract fun resultDao(): ResultDao
 
