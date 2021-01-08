@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
 import com.example.quiz.view_model.vm.QuestionViewModel
+import com.example.quiz.view_model.vm.ResultViewModel
 import com.google.android.material.button.MaterialButton
 
 // create list of all buttons in adapter/recyclerview
@@ -22,6 +23,7 @@ val Buttons = mutableListOf<MaterialButton>()
 class AnswerAdapter(
         val answers: List<String>,
         val viewModel: QuestionViewModel,
+        val viewModelResult: ResultViewModel,
         val correct: String,
         val context: Context)
     : RecyclerView.Adapter<AnswerAdapter.Holder>() {
@@ -51,6 +53,8 @@ class AnswerAdapter(
 
             Handler().postDelayed({
                 if (button.text.toString() == correct) {
+                    viewModelResult.IncrementResultNumber()
+                    viewModelResult.result+1
                     button.setTextColor(ContextCompat.getColor(context, R.color.correct_color))
                     button.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.correct_color))
                     button.setBackgroundColor(ContextCompat.getColor(context, R.color.correct_background_color))
