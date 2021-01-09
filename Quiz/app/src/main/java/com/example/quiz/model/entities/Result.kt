@@ -9,6 +9,6 @@ data class Result(
         @PrimaryKey(autoGenerate = true) val id: Int,
         val date: Date,
         val category: Int,
-        val difficulty: Int,
+        val difficulty: String,
         val result: Int
 )

@@ -16,6 +16,7 @@ import com.example.quiz.R
 import com.example.quiz.view_model.vm.QuestionViewModel
 import com.example.quiz.view_model.vm.ResultViewModel
 import com.google.android.material.button.MaterialButton
+import java.util.*
 
 // create list of all buttons in adapter/recyclerview
 val Buttons = mutableListOf<MaterialButton>()
@@ -25,7 +26,9 @@ class AnswerAdapter(
         val viewModel: QuestionViewModel,
         val viewModelResult: ResultViewModel,
         val correct: String,
-        val context: Context)
+        val context: Context,
+        val category: Int,
+        val difficulty: String)
     : RecyclerView.Adapter<AnswerAdapter.Holder>() {
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view)
@@ -65,11 +68,15 @@ class AnswerAdapter(
                 }
             }, 1000)
 
+            val date = Date()
+
             Handler().postDelayed({
                 if(viewModel.IncrementQuizNumber())
                     it.findNavController().navigate(R.id.action_questionFragment_self)
-                else
+                else {
+                    viewModelResult.insert(date, category, difficulty, viewModelResult.result)
                     it.findNavController().navigate(R.id.action_questionFragment_to_resultFragment)
+                }
             }, 2000)
         }
     }
