@@ -14,6 +14,7 @@ import com.example.quiz.model.Category
 import com.example.quiz.view_model.vm.CategoryViewModel
 import com.example.quiz.view_model.vm.DifficultyLevelViewModel
 import com.example.quiz.view_model.vm.QuestionViewModel
+import com.example.quiz.view_model.vm.ResultViewModel
 import kotlinx.android.synthetic.main.fragment_difficulty_level.textViewSelectedCategory
 import kotlinx.android.synthetic.main.fragment_loading.*
 
@@ -22,6 +23,7 @@ class LoadingFragment : Fragment() {
     private lateinit var viewModelDifficulty : DifficultyLevelViewModel
     private lateinit var viewModelCategory: CategoryViewModel
     private lateinit var viewModelQuestion: QuestionViewModel
+    private lateinit var viewModelResult: ResultViewModel
     private lateinit var category: Category
     private var difficulty: String = ""
 
@@ -42,6 +44,7 @@ class LoadingFragment : Fragment() {
         viewModelDifficulty = ViewModelProvider(requireActivity()).get(DifficultyLevelViewModel::class.java)
         viewModelCategory = ViewModelProvider(requireActivity()).get(CategoryViewModel::class.java)
         viewModelQuestion = ViewModelProvider(requireActivity()).get(QuestionViewModel::class.java)
+        viewModelResult = ViewModelProvider(requireActivity()).get(ResultViewModel::class.java)
 
         category = viewModelCategory.currentCategory.value!!
         difficulty = viewModelDifficulty.currentDifficultyLevel.value!!
@@ -56,6 +59,9 @@ class LoadingFragment : Fragment() {
 
         textViewSelectedLevel.text = difficulty
         textViewSelectedCategory.text = category.name
+
+        viewModelQuestion.ResetQuizNumber()
+        viewModelResult.ResetResultNumber()
 
         // navigate to another fragment after X seconds
         Handler().postDelayed({
