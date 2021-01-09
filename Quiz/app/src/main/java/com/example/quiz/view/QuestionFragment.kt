@@ -16,11 +16,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
 import com.example.quiz.view_model.adapters.AnswerAdapter
 import com.example.quiz.view_model.vm.QuestionViewModel
+import com.example.quiz.view_model.vm.ResultViewModel
 import kotlinx.android.synthetic.main.fragment_question.*
 
 class QuestionFragment : Fragment() {
 
     private lateinit var viewModel: QuestionViewModel
+    private lateinit var viewModelResult: ResultViewModel
     private lateinit var myAdapter: AnswerAdapter
     private lateinit var recyclerView: RecyclerView
 
@@ -39,6 +41,7 @@ class QuestionFragment : Fragment() {
     ): View? {
 
         viewModel = ViewModelProvider(requireActivity()).get(QuestionViewModel::class.java)
+        viewModelResult = ViewModelProvider(requireActivity()).get(ResultViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_question, container, false)
     }
@@ -61,6 +64,7 @@ class QuestionFragment : Fragment() {
             myAdapter = AnswerAdapter(
                     viewModel.getCurrentAnswers(),
                     viewModel,
+                    viewModelResult,
                     Html.fromHtml(viewModel.getCurrentCorrectAnswer(), Html.FROM_HTML_MODE_LEGACY).toString(),
                     requireContext())
             myAdapter.notifyDataSetChanged()

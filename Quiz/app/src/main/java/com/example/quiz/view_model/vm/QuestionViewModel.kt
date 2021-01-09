@@ -20,6 +20,11 @@ class QuestionViewModel(application: Application): AndroidViewModel(application)
         return bool
     }
 
+    fun ResetQuizNumber(): Int {
+        _currentQuizNumber = 0
+        return _currentQuizNumber
+    }
+
     // our list of questions
     private val _quizList: MutableLiveData<List<Quiz>> = MutableLiveData()
     val quizList: LiveData<List<Quiz>>
