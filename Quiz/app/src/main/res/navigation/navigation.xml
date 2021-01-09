@@ -56,7 +56,8 @@
         tools:layout="@layout/fragment_result">
         <action
             android:id="@+id/action_resultFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
+            app:destination="@id/categoryFragment"
+            app:popUpTo="@+id/mainFragment"/>
     </fragment>
     <fragment
         android:id="@+id/questionFragment"
