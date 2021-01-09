@@ -10,4 +10,9 @@ class ResultViewModel(application: Application): AndroidViewModel(application) {
     fun IncrementResultNumber(): Int {
         return _result++
     }
+
+    fun ResetResultNumber() : Int {
+        _result = 0
+        return _result
+    }
 }
