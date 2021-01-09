@@ -54,7 +54,6 @@ class AnswerAdapter(
             Handler().postDelayed({
                 if (button.text.toString() == correct) {
                     viewModelResult.IncrementResultNumber()
-                    viewModelResult.result+1
                     button.setTextColor(ContextCompat.getColor(context, R.color.correct_color))
                     button.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.correct_color))
                     button.setBackgroundColor(ContextCompat.getColor(context, R.color.correct_background_color))
