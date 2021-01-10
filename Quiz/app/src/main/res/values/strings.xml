@@ -26,5 +26,6 @@
 
     <!-- Other -->
     <string name="load">Quiz download in progress...</string>
+    <string name="history">Previous Quizzzes</string>
 
 </resources>
