@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,8 +19,9 @@
             android:id="@+id/textView_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Science and Nature"
-            android:textSize="18sp" />
+            android:padding="@dimen/padd"
+            android:text="Comics"
+            android:textSize="@dimen/font_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -38,8 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#C5C3C8"
+            android:padding="@dimen/padd"
             android:text="15/12/2020 16:55"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -55,14 +56,18 @@
             android:id="@+id/textView_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/paddleft"
+            android:paddingTop="@dimen/paddtop"
             android:text="7/10"
-            android:textSize="30sp" />
+            android:textSize="@dimen/title_font_size" />
 
         <TextView
             android:id="@+id/textView_difficultylevel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/paddleft"
+            android:paddingTop="@dimen/paddtop"
             android:text="Medium"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_size" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
