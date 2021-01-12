@@ -22,7 +22,7 @@ class MainFragment : Fragment() {
 
         button_start.setOnClickListener { it.findNavController().navigate(R.id.action_mainFragment_to_categoryFragment) }
 
-        button_history.setOnClickListener {}
+        button_history.setOnClickListener { it.findNavController().navigate(R.id.action_mainFragment_to_historyFragment) }
 
         button_about.setOnClickListener { it.findNavController().navigate(R.id.action_mainFragment_to_aboutFragment) }
     }

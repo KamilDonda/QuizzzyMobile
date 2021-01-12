@@ -18,4 +18,10 @@
     <dimen name="pb_width">300dp</dimen>
     <dimen name="pb_padding">25dp</dimen>
 
+    <!-- History -->
+    <dimen name="font_size">18sp</dimen>
+    <dimen name="padd">20px</dimen>
+    <dimen name="paddtop">10px</dimen>
+    <dimen name="paddleft">200px</dimen>
+
 </resources>
