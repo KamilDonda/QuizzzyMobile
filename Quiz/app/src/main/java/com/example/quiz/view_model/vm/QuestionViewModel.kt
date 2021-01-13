@@ -9,11 +9,12 @@ import com.example.quiz.model.entities.Quiz
 import com.example.quiz.model.repository.QuizRepository
 import kotlinx.coroutines.launch
 
-class QuestionViewModel(application: Application): AndroidViewModel(application) {
+class QuestionViewModel(application: Application) : AndroidViewModel(application) {
 
     private var _currentQuizNumber = 0
     val currentQuizNumber: Int
-    get() = _currentQuizNumber
+        get() = _currentQuizNumber
+
     fun IncrementQuizNumber(): Boolean {
         val bool = _currentQuizNumber < _quizList.value!!.size - 1
         if (bool) _currentQuizNumber++
@@ -28,24 +29,22 @@ class QuestionViewModel(application: Application): AndroidViewModel(application)
     // our list of questions
     private val _quizList: MutableLiveData<List<Quiz>> = MutableLiveData()
     val quizList: LiveData<List<Quiz>>
-    get() = _quizList
+        get() = _quizList
 
     fun setCategoryAndDifficulty(category: Int? = null, difficulty: String = "all") {
         if (category != null) {
-            if(difficulty == "all") {
+            if (difficulty == "all") {
                 setQuizList(category)
-            }
-            else {
+            } else {
                 setQuizList(category, difficulty)
             }
-        }
-        else {
+        } else {
             setQuizList()
         }
     }
 
     // download data from API and save it into _questionList
-    fun setQuizList(){
+    fun setQuizList() {
         viewModelScope.launch {
             // our Quiz has two properties: response_code and results
             // results is a list of Questions
@@ -55,7 +54,7 @@ class QuestionViewModel(application: Application): AndroidViewModel(application)
         }
     }
 
-    fun setQuizList(category: Int){
+    fun setQuizList(category: Int) {
         viewModelScope.launch {
             // our Quiz has two properties: response_code and results
             // results is a list of Questions
@@ -65,7 +64,7 @@ class QuestionViewModel(application: Application): AndroidViewModel(application)
         }
     }
 
-    fun setQuizList(category: Int, difficulty: String){
+    fun setQuizList(category: Int, difficulty: String) {
         viewModelScope.launch {
             // our Quiz has two properties: response_code and results
             // results is a list of Questions
@@ -75,19 +74,18 @@ class QuestionViewModel(application: Application): AndroidViewModel(application)
         }
     }
 
-    fun getCurrentQuestion()
-            = _quizList.value!!.get(_currentQuizNumber).question
+    fun getCurrentQuestion() = _quizList.value!!.get(_currentQuizNumber).question
 
-    fun getCurrentCorrectAnswer()
-            = _quizList.value!!.get(_currentQuizNumber).correct_answer
+    fun getCurrentCorrectAnswer() = _quizList.value!!.get(_currentQuizNumber).correct_answer
 
     fun getCurrentAnswers(): List<String> {
         val list: MutableList<String> = _quizList.value!!.get(_currentQuizNumber).incorrect_answers as MutableList<String>
-        list.add(getCurrentCorrectAnswer())
+        val correct = getCurrentCorrectAnswer()
+        if (!list.contains(correct))
+            list.add(correct)
         list.shuffle()
         return list
     }
 
-    fun getCurrentCategory()
-            = _quizList.value!!.get(_currentQuizNumber).category
+    fun getCurrentCategory() = _quizList.value!!.get(_currentQuizNumber).category
 }
