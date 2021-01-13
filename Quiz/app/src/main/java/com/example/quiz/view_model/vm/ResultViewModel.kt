@@ -29,8 +29,8 @@ class ResultViewModel(application: Application) : AndroidViewModel(application) 
     val result: Int
         get() = _result
 
-    fun IncrementResultNumber(): Int {
-        return _result++
+    fun IncrementResultNumber() {
+        _result++
     }
 
     fun ResetResultNumber(): Int {
