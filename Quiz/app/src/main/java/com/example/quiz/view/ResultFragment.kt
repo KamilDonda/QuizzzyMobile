@@ -37,7 +37,7 @@ class ResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val result = viewModelResult.IncrementResultNumber();
+        val result = viewModelResult.result;
 
         if (result < 4)
             textViewResultInfo.text = "Maybe next time.."
