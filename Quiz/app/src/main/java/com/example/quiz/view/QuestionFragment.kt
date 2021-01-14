@@ -83,7 +83,7 @@ class QuestionFragment : Fragment() {
                     viewLifecycleOwner,
                     view,
                     animator,
-                    viewModelCategory.currentCategory.value?.id!!,
+                    viewModelCategory.currentCategory.value?.id ?: 0,
                     viewModelDifficulty.currentDifficultyLevel.value!!
             )
             myAdapter.notifyDataSetChanged()
