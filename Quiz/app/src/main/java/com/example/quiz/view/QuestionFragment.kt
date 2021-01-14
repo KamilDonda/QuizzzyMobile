@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.pm.ActivityInfo
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -112,8 +113,10 @@ class QuestionFragment : Fragment() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
 
-                if (progressBar.progress == progressBar.max)
+                if (progressBar.progress == progressBar.max) {
                     viewModel.setTimeIsUp(true)
+                    MediaPlayer.create(context, R.raw.time_is_up).start()
+                }
             }
         })
         animator.start()
