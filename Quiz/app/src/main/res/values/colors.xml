@@ -14,4 +14,6 @@
     <color name="incorrect_background_color">#F8ABAB</color>
     <color name="time_is_up_color">#673AB7</color>
     <color name="time_is_up_background_color">#B38FCA</color>
+
+    <color name="row_color">#cccccc</color>
 </resources>
