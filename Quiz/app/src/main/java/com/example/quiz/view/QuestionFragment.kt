@@ -44,6 +44,8 @@ class QuestionFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
     private lateinit var animator: ValueAnimator
 
+    private lateinit var timerSound: MediaPlayer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
@@ -72,6 +74,10 @@ class QuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        timerSound = MediaPlayer.create(context, R.raw.timer)
+        timerSound.isLooping = true
+        timerSound.start()
+
         timer()
 
         viewModel.quizList.observe(viewLifecycleOwner, Observer {
@@ -85,7 +91,8 @@ class QuestionFragment : Fragment() {
                     view,
                     animator,
                     viewModelCategory.currentCategory.value?.id ?: 0,
-                    viewModelDifficulty.currentDifficultyLevel.value!!
+                    viewModelDifficulty.currentDifficultyLevel.value!!,
+                    timerSound
             )
             myAdapter.notifyDataSetChanged()
 
@@ -115,6 +122,7 @@ class QuestionFragment : Fragment() {
 
                 if (progressBar.progress == progressBar.max) {
                     viewModel.setTimeIsUp(true)
+                    timerSound.stop()
                     MediaPlayer.create(context, R.raw.time_is_up).start()
                 }
             }
@@ -125,5 +133,6 @@ class QuestionFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         animator.cancel()
+        timerSound.stop()
     }
 }

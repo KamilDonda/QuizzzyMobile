@@ -36,7 +36,8 @@ class AnswerAdapter(
     val view: View,
     val animator: ValueAnimator,
     val category: Int,
-    val difficulty: String)
+    val difficulty: String,
+    val timerSound: MediaPlayer)
     : RecyclerView.Adapter<AnswerAdapter.Holder>() {
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view)
@@ -66,6 +67,10 @@ class AnswerAdapter(
             for (b in Buttons) b.isClickable = false
             animator.cancel()
 
+            // stop timer sound
+            timerSound.stop()
+
+            // onClick sound effect
             if (button.text.toString() == correct)
                 Handler().postDelayed({
                     correctSound.start()
