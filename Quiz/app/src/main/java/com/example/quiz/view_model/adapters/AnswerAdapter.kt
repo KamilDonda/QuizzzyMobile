@@ -74,9 +74,9 @@ class AnswerAdapter(
                     Handler().postDelayed({
                         for (b in Buttons) {
                             if (b.text.toString() == correct) {
-                                b.setTextColor(ContextCompat.getColor(context, R.color.time_is_up_color))
-                                b.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.time_is_up_color))
-                                b.setBackgroundColor(ContextCompat.getColor(context, R.color.time_is_up_background_color))
+                                b.setTextColor(ContextCompat.getColor(context, R.color.correct_color))
+                                b.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.correct_color))
+                                b.setBackgroundColor(ContextCompat.getColor(context, R.color.correct_background_color))
                             }
                         }
                     }, 500)
@@ -101,9 +101,9 @@ class AnswerAdapter(
                 for (b in Buttons) {
                     b.isClickable = false
                     if (b.text.toString() == correct) {
-                        b.setTextColor(ContextCompat.getColor(context, R.color.time_is_up_color))
-                        b.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.time_is_up_color))
-                        b.setBackgroundColor(ContextCompat.getColor(context, R.color.time_is_up_background_color))
+                        b.setTextColor(ContextCompat.getColor(context, R.color.correct_color))
+                        b.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.correct_color))
+                        b.setBackgroundColor(ContextCompat.getColor(context, R.color.correct_background_color))
                     }
                 }
 
