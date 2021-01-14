@@ -13,5 +13,6 @@
     <color name="incorrect_color">#c70039</color>
     <color name="incorrect_background_color">#F8ABAB</color>
 
-    <color name="row_color">#cccccc</color>
+    <color name="row_color">@color/primary_color</color>
+    <color name="text_color">@color/white</color>
 </resources>

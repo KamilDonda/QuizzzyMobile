@@ -8,34 +8,23 @@
     android:padding="@dimen/padding_history">
     <TextView
         android:id="@+id/textView_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="14/01/2021 14:55"
-        android:textSize="@dimen/font_size"
+        style="@style/HistoryTextViewStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/textView_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Comics"
-        android:textSize="@dimen/font_size"
+        style="@style/HistoryTextViewStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
     <TextView
         android:id="@+id/textView_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="10/10"
+        style="@style/HistoryTextViewStyle"
         android:textSize="@dimen/result_font_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/textView_difficultylevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="All"
-        android:textSize="@dimen/font_size"
+        style="@style/HistoryTextViewStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView_result"
         app:layout_constraintTop_toBottomOf="@+id/textView_result" />
