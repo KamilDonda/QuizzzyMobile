@@ -11,25 +11,47 @@ import kotlinx.coroutines.launch
 
 class QuestionViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val _timeIsUp = MutableLiveData<Boolean>()
+    val timeIsUp: LiveData<Boolean>
+        get() = _timeIsUp
+    fun setTimeIsUp(bool: Boolean) {
+        _timeIsUp.value = bool
+    }
+
     private var _currentQuizNumber = 0
     val currentQuizNumber: Int
         get() = _currentQuizNumber
-
-    fun IncrementQuizNumber(): Boolean {
+    fun incrementQuizNumber(): Boolean {
         val bool = _currentQuizNumber < _quizList.value!!.size - 1
         if (bool) _currentQuizNumber++
+
+        resetProgressStatus()
         return bool
     }
-
-    fun ResetQuizNumber(): Int {
+    fun resetQuizNumber(): Int {
         _currentQuizNumber = 0
+        resetProgressStatus()
         return _currentQuizNumber
+    }
+
+    private var _progressStatus: Int = 0
+    val progressStatus: Int
+        get() = _progressStatus
+    fun incrementProgressStatus(time: Int) {
+        _progressStatus = time
+    }
+    fun resetProgressStatus() {
+        _progressStatus = 0
     }
 
     // our list of questions
     private val _quizList: MutableLiveData<List<Quiz>> = MutableLiveData()
     val quizList: LiveData<List<Quiz>>
         get() = _quizList
+
+    init {
+        setTimeIsUp(false)
+    }
 
     fun setCategoryAndDifficulty(category: Int? = null, difficulty: String = "all") {
         if (category != null) {

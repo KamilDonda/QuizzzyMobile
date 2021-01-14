@@ -60,7 +60,7 @@ class LoadingFragment : Fragment() {
         textViewSelectedLevel.text = difficulty
         textViewSelectedCategory.text = category.name
 
-        viewModelQuestion.ResetQuizNumber()
+        viewModelQuestion.resetQuizNumber()
         viewModelResult.ResetResultNumber()
 
         // navigate to another fragment after X seconds

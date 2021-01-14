@@ -1,15 +1,19 @@
 package com.example.quiz.view_model.adapters
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Handler
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
@@ -27,6 +31,9 @@ class AnswerAdapter(
         val viewModelResult: ResultViewModel,
         val correct: String,
         val context: Context,
+        val viewLifecycleOwner: LifecycleOwner,
+        val view: View,
+        val animator: ValueAnimator,
         val category: Int,
         val difficulty: String)
     : RecyclerView.Adapter<AnswerAdapter.Holder>() {
@@ -35,7 +42,7 @@ class AnswerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.question_row, parent, false)
+                .inflate(R.layout.question_row, parent, false)
         return Holder(view)
     }
 
@@ -52,26 +59,34 @@ class AnswerAdapter(
 
         button.setOnClickListener {
             // if any button is clicked then all buttons become non-clickable
-            for (b in  Buttons) b.isClickable = false
-
+            for (b in Buttons) b.isClickable = false
+            animator.cancel()
             Handler().postDelayed({
                 if (button.text.toString() == correct) {
                     viewModelResult.IncrementResultNumber()
                     button.setTextColor(ContextCompat.getColor(context, R.color.correct_color))
                     button.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.correct_color))
                     button.setBackgroundColor(ContextCompat.getColor(context, R.color.correct_background_color))
-                }
-                else {
+                } else {
                     button.setTextColor(ContextCompat.getColor(context, R.color.incorrect_color))
                     button.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.incorrect_color))
                     button.setBackgroundColor(ContextCompat.getColor(context, R.color.incorrect_background_color))
+                    Handler().postDelayed({
+                        for (b in Buttons) {
+                            if (b.text.toString() == correct) {
+                                b.setTextColor(ContextCompat.getColor(context, R.color.time_is_up_color))
+                                b.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.time_is_up_color))
+                                b.setBackgroundColor(ContextCompat.getColor(context, R.color.time_is_up_background_color))
+                            }
+                        }
+                    }, 500)
                 }
             }, 1000)
 
             val date = Date()
 
             Handler().postDelayed({
-                if(viewModel.IncrementQuizNumber())
+                if (viewModel.incrementQuizNumber())
                     it.findNavController().navigate(R.id.action_questionFragment_self)
                 else {
                     viewModelResult.insert(date, category, difficulty, viewModelResult.result)
@@ -79,5 +94,28 @@ class AnswerAdapter(
                 }
             }, 2000)
         }
+
+        viewModel.timeIsUp.observe(viewLifecycleOwner, Observer {
+            if (viewModel.timeIsUp.value!!) {
+
+                for (b in Buttons) {
+                    b.isClickable = false
+                    if (b.text.toString() == correct) {
+                        b.setTextColor(ContextCompat.getColor(context, R.color.time_is_up_color))
+                        b.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.time_is_up_color))
+                        b.setBackgroundColor(ContextCompat.getColor(context, R.color.time_is_up_background_color))
+                    }
+                }
+
+                viewModel.setTimeIsUp(false)
+
+                Handler().postDelayed({
+                    if (viewModel.incrementQuizNumber())
+                        view.findNavController().navigate(R.id.action_questionFragment_self)
+                    else
+                        view.findNavController().navigate(R.id.action_questionFragment_to_resultFragment)
+                }, 2000)
+            }
+        })
     }
 }
