@@ -22,6 +22,7 @@
         android:layout_width="410dp"
         android:layout_height="627dp"
         android:layout_marginTop="119dp"
+        tools:listitem="@layout/history_row"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

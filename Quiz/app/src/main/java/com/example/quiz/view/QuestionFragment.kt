@@ -23,6 +23,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
 import com.example.quiz.view_model.adapters.AnswerAdapter
+import com.example.quiz.view_model.vm.CategoryViewModel
+import com.example.quiz.view_model.vm.DifficultyLevelViewModel
 import com.example.quiz.view_model.vm.QuestionViewModel
 import com.example.quiz.view_model.vm.ResultViewModel
 import kotlinx.android.synthetic.main.fragment_question.*
@@ -32,6 +34,8 @@ class QuestionFragment : Fragment() {
 
     private lateinit var viewModel: QuestionViewModel
     private lateinit var viewModelResult: ResultViewModel
+    private lateinit var viewModelCategory: CategoryViewModel
+    private lateinit var viewModelDifficulty: DifficultyLevelViewModel
     private lateinit var myAdapter: AnswerAdapter
     private lateinit var recyclerView: RecyclerView
 
@@ -57,6 +61,8 @@ class QuestionFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(QuestionViewModel::class.java)
         viewModelResult = ViewModelProvider(requireActivity()).get(ResultViewModel::class.java)
+        viewModelCategory = ViewModelProvider(requireActivity()).get(CategoryViewModel::class.java)
+        viewModelDifficulty = ViewModelProvider(requireActivity()).get(DifficultyLevelViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_question, container, false)
     }
@@ -76,7 +82,9 @@ class QuestionFragment : Fragment() {
                     requireContext(),
                     viewLifecycleOwner,
                     view,
-                    animator
+                    animator,
+                    viewModelCategory.currentCategory.value?.id!!,
+                    viewModelDifficulty.currentDifficultyLevel.value!!
             )
             myAdapter.notifyDataSetChanged()
 

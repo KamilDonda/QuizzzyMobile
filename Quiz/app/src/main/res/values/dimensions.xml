@@ -20,8 +20,8 @@
 
     <!-- History -->
     <dimen name="font_size">18sp</dimen>
-    <dimen name="padd">20px</dimen>
-    <dimen name="paddtop">10px</dimen>
-    <dimen name="paddleft">200px</dimen>
+    <dimen name="paddl">60px</dimen>
+    <dimen name="paddtop">20px</dimen>
+    <dimen name="paddleft">250px</dimen>
 
 </resources>

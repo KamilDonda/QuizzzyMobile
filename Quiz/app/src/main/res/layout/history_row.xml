@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/paddtop">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -19,7 +19,8 @@
             android:id="@+id/textView_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padd"
+            android:paddingLeft="@dimen/paddl"
+            android:paddingTop="@dimen/paddtop"
             android:text="Comics"
             android:textSize="@dimen/font_size" />
     </LinearLayout>
@@ -38,7 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#C5C3C8"
-            android:padding="@dimen/padd"
+            android:paddingLeft="@dimen/paddl"
+            android:paddingTop="@dimen/paddtop"
             android:text="15/12/2020 16:55"
             android:textSize="@dimen/font_size" />
     </LinearLayout>
