@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.pm.ActivityInfo
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -43,6 +44,10 @@ class QuestionFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
     private lateinit var animator: ValueAnimator
 
+    private lateinit var timerSound: MediaPlayer
+
+    private var isReleased = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
@@ -71,6 +76,10 @@ class QuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        timerSound = MediaPlayer.create(context, R.raw.timer)
+        timerSound.isLooping = true
+        timerSound.start()
+
         timer()
 
         viewModel.quizList.observe(viewLifecycleOwner, Observer {
@@ -84,7 +93,8 @@ class QuestionFragment : Fragment() {
                     view,
                     animator,
                     viewModelCategory.currentCategory.value?.id ?: 0,
-                    viewModelDifficulty.currentDifficultyLevel.value!!
+                    viewModelDifficulty.currentDifficultyLevel.value!!,
+                    timerSound
             )
             myAdapter.notifyDataSetChanged()
 
@@ -112,8 +122,11 @@ class QuestionFragment : Fragment() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
 
-                if (progressBar.progress == progressBar.max)
+                if (progressBar.progress == progressBar.max) {
                     viewModel.setTimeIsUp(true)
+                    timerSound.release()
+                    MediaPlayer.create(context, R.raw.time_is_up).start()
+                }
             }
         })
         animator.start()
@@ -121,6 +134,20 @@ class QuestionFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        animator.cancel()
+        animator.pause()
+        timerSound.release()
+        isReleased = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        animator.resume()
+        if(isReleased) {
+            timerSound = MediaPlayer.create(context, R.raw.timer)
+            timerSound.isLooping = true
+            timerSound.start()
+
+            isReleased = false
+        }
     }
 }

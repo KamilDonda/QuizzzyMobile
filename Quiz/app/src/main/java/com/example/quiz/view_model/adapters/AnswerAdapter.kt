@@ -3,6 +3,7 @@ package com.example.quiz.view_model.adapters
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.ColorStateList
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Handler
 import android.text.Html
@@ -26,23 +27,27 @@ import java.util.*
 val Buttons = mutableListOf<MaterialButton>()
 
 class AnswerAdapter(
-        val answers: List<String>,
-        val viewModel: QuestionViewModel,
-        val viewModelResult: ResultViewModel,
-        val correct: String,
-        val context: Context,
-        val viewLifecycleOwner: LifecycleOwner,
-        val view: View,
-        val animator: ValueAnimator,
-        val category: Int,
-        val difficulty: String)
+    val answers: List<String>,
+    val viewModel: QuestionViewModel,
+    val viewModelResult: ResultViewModel,
+    val correct: String,
+    val context: Context,
+    val viewLifecycleOwner: LifecycleOwner,
+    val view: View,
+    val animator: ValueAnimator,
+    val category: Int,
+    val difficulty: String,
+    val timerSound: MediaPlayer)
     : RecyclerView.Adapter<AnswerAdapter.Holder>() {
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view)
 
+    private val correctSound = MediaPlayer.create(context, R.raw.correct)
+    private val incorrectSound = MediaPlayer.create(context, R.raw.incorrect)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.question_row, parent, false)
+            .inflate(R.layout.question_row, parent, false)
         return Holder(view)
     }
 
@@ -61,6 +66,18 @@ class AnswerAdapter(
             // if any button is clicked then all buttons become non-clickable
             for (b in Buttons) b.isClickable = false
             animator.cancel()
+
+            // stop timer sound
+            timerSound.release()
+
+            // onClick sound effect
+            if (button.text.toString() == correct)
+                Handler().postDelayed({
+                    correctSound.start()
+                },500)
+            else
+                incorrectSound.start()
+
             Handler().postDelayed({
                 if (button.text.toString() == correct) {
                     viewModelResult.IncrementResultNumber()
