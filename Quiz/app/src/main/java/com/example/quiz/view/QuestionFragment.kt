@@ -46,6 +46,8 @@ class QuestionFragment : Fragment() {
 
     private lateinit var timerSound: MediaPlayer
 
+    private var isReleased = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
@@ -122,7 +124,7 @@ class QuestionFragment : Fragment() {
 
                 if (progressBar.progress == progressBar.max) {
                     viewModel.setTimeIsUp(true)
-                    timerSound.stop()
+                    timerSound.release()
                     MediaPlayer.create(context, R.raw.time_is_up).start()
                 }
             }
@@ -132,7 +134,20 @@ class QuestionFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        animator.cancel()
-        timerSound.stop()
+        animator.pause()
+        timerSound.release()
+        isReleased = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        animator.resume()
+        if(isReleased) {
+            timerSound = MediaPlayer.create(context, R.raw.timer)
+            timerSound.isLooping = true
+            timerSound.start()
+
+            isReleased = false
+        }
     }
 }

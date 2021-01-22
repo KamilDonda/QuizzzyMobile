@@ -68,7 +68,7 @@ class AnswerAdapter(
             animator.cancel()
 
             // stop timer sound
-            timerSound.stop()
+            timerSound.release()
 
             // onClick sound effect
             if (button.text.toString() == correct)
