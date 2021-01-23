@@ -5,13 +5,15 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.example.quiz.model.database.ResultDatabase
 import com.example.quiz.model.entities.Result
 import com.example.quiz.model.repository.ResultRepository
 
 class HistoryViewModel (application: Application): AndroidViewModel(application) {
-    var history: LiveData<List<Result>>
-    var _history: LiveData<List<Result>>
+    var allResults: LiveData<List<Result>>
+
+    val listOfIds = MutableLiveData<List<Int>>()
 
     private var _query: MutableLiveData<String> = MutableLiveData()
     val query: LiveData<String>
@@ -24,16 +26,22 @@ class HistoryViewModel (application: Application): AndroidViewModel(application)
     private val repo = ResultRepository(ResultDatabase.getDatabase(application).resultDao())
 
     init{
-        history = ResultDatabase.getDatabase(application).resultDao().getAllResults()
-        _history = ResultDatabase.getDatabase(application).resultDao().getAllResults()
+        listOfIds.value = null
+        allResults = Transformations.switchMap(listOfIds){
+            if(it == null) {
+                return@switchMap repo.getAllResult
+            }
+            else {
+                return@switchMap repo.getResultsWithFilters(listOfIds.value!!)
+            }
+        }
     }
 
-    fun setResultsWithFilters(categories: List<Int>){
-        history = repo.getResultsWithFilters(categories)
-        Log.v("TAGGG", "Q: ${history.value}")
+    fun setResultsWithFilters(ids: List<Int>){
+        listOfIds.value = ids
     }
 
     fun resetResults() {
-        history = _history
+        listOfIds.value = null
     }
 }

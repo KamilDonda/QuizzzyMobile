@@ -16,7 +16,6 @@ import com.example.quiz.model.Category
 import com.example.quiz.view_model.adapters.HistoryAdapter
 import com.example.quiz.view_model.vm.HistoryViewModel
 import kotlinx.android.synthetic.main.fragment_history.*
-import kotlin.properties.Delegates
 
 class HistoryFragment : Fragment() {
 
@@ -32,9 +31,12 @@ class HistoryFragment : Fragment() {
 
         mylayoutmanager = LinearLayoutManager(context)
         viewModel = ViewModelProvider(requireActivity()).get(HistoryViewModel::class.java)
-        viewModel.history.observe(viewLifecycleOwner, Observer { myadapter.notifyDataSetChanged() })
+        viewModel.allResults.observe(viewLifecycleOwner, Observer {
+            viewModel.query.value
+            myadapter.notifyDataSetChanged()
+        })
 
-        myadapter = HistoryAdapter(viewModel.history)
+        myadapter = HistoryAdapter(viewModel.allResults)
         return inflater.inflate(R.layout.fragment_history, container, false)
     }
 
@@ -49,22 +51,19 @@ class HistoryFragment : Fragment() {
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
-                viewModel.history.observe(viewLifecycleOwner, Observer {
-                    if (!query.isNullOrEmpty()) {
-                        viewModel.setQuery(query)
-                        val listOfIds = mutableListOf<Int>()
-                        Category.listOfCategories.forEach {
-                            if (it.name.contains(viewModel.query.value!!))
-                                listOfIds.add(it.id ?: 0)
-                        }
-                        viewModel.setResultsWithFilters(listOfIds)
-                    } else {
-                        viewModel.resetResults()
-                        viewModel.setQuery("")
+                if (!query.isNullOrEmpty()) {
+                    viewModel.setQuery(query)
+                    val listOfIds = mutableListOf<Int>()
+                    Category.listOfCategories.forEach {
+                        if (it.name.contains(viewModel.query.value!!))
+                            listOfIds.add(it.id ?: 0)
                     }
-                    Log.v("TAGGG", "Q: ${viewModel.history.value}")
-                })
-
+                    viewModel.setResultsWithFilters(listOfIds)
+                    Log.v("TAGGG", listOfIds.toString())
+                } else {
+                    viewModel.resetResults()
+                    viewModel.setQuery("")
+                }
                 return false
             }
         })
