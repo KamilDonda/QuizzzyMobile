@@ -15,4 +15,7 @@
 
     <color name="row_color">@color/primary_color</color>
     <color name="text_color">@color/white</color>
+
+    <color name="start_color">#ff2d9a59</color>
+    <color name="end_color">#ff23729a</color>
 </resources>
