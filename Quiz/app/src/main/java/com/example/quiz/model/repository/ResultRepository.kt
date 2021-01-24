@@ -8,4 +8,6 @@ class ResultRepository(val dao: ResultDao) {
     val getAllResult: LiveData<List<Result>> = dao.getAllResults()
 
     suspend fun insert(result: Result) = dao.insert(result)
+
+    fun getResultsWithFilters(categories: List<Int>) = dao.getResultsWithFilters(categories)
 }

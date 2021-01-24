@@ -14,4 +14,7 @@ interface ResultDao {
 
     @Query("SELECT * FROM result_table")
     fun getAllResults(): LiveData<List<Result>>
+
+    @Query("SELECT * FROM result_table WHERE category IN (:categories)")
+    fun getResultsWithFilters(categories: List<Int>): LiveData<List<Result>>
 }
