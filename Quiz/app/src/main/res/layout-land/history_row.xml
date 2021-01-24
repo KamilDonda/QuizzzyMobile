@@ -10,6 +10,7 @@
     <TextView
         android:id="@+id/textView_date"
         style="@style/HistoryTextViewStyle"
+        android:textSize="@dimen/landscape_font_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -18,6 +19,7 @@
         android:id="@+id/textView_category"
         android:layout_marginLeft="@dimen/margin_horizontal_history"
         style="@style/HistoryTextViewStyle"
+        android:textSize="@dimen/landscape_font_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView_date"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +27,7 @@
     <TextView
         android:id="@+id/textView_result"
         style="@style/HistoryTextViewStyle"
-        android:textSize="@dimen/result_font_size"
+        android:textSize="@dimen/landscape_font_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,6 +35,7 @@
         android:id="@+id/textView_difficultylevel"
         android:layout_marginRight="@dimen/margin_horizontal_history"
         style="@style/HistoryTextViewStyle"
+        android:textSize="@dimen/landscape_font_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView_result"
         app:layout_constraintTop_toTopOf="parent" />

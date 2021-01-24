@@ -10,6 +10,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_in_row"
         app:strokeWidth="3dp"
-        style="@style/ButtonStyle"/>
+        style="@style/ButtonStyle"
+        android:textSize="@dimen/answer_font_size"/>
 
 </LinearLayout>

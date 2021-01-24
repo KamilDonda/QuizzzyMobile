@@ -12,7 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-<!--        <item name="android:background"></item>-->
+
+        <item name="android:fontFamily">@font/shadows_into_light</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -26,6 +27,7 @@
         <item name="cornerRadius">50dp</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="strokeColor">@color/primary_color</item>
+        <item name="android:fontFamily">@font/shadows_into_light</item>
     </style>
 
     <style name="TitleStyle">
@@ -53,8 +55,9 @@
     <style name="QuestionStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/subtitle_font_size</item>
+        <item name="android:textSize">@dimen/question_font_size</item>
         <item name="android:padding">@dimen/pb_padding</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="HistoryTextViewStyle">
