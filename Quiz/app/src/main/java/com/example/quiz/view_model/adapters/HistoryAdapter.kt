@@ -37,7 +37,7 @@ class HistoryAdapter (var history: LiveData<List<Result>>):
         val result = holder.itemView.findViewById<TextView>(R.id.textView_result)
 
         val dateFromBDatabase = history.value?.get(position)?.date
-        val format = SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
+        val format = SimpleDateFormat("dd\t\u200B\t/\t\u200B\tMM\t\u200B\t/\t\u200B\tyyyy  HH﹕mm﹕ss")
         val newDate = format.format(dateFromBDatabase)
 
         var catId = history.value?.get(position)?.category
@@ -46,6 +46,6 @@ class HistoryAdapter (var history: LiveData<List<Result>>):
         date.text = newDate
         category.text = Category.listOfCategories.find { c -> c.id == catId }?.name
         difficulty.text = history.value?.get(position)?.difficulty
-        result.text = history.value?.get(position)?.result.toString() + "/10"
+        result.text = history.value?.get(position)?.result.toString() + "\t\u200B\t/\t\u200B\t10"
     }
 }
