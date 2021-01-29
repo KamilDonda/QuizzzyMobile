@@ -9,6 +9,7 @@
     <TextView
         android:id="@+id/textView_date"
         style="@style/HistoryTextViewStyle"
+        android:textSize="@dimen/date_font_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
@@ -22,10 +23,10 @@
         android:textSize="@dimen/result_font_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView_difficultylevel"
         style="@style/HistoryTextViewStyle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView_result"
         app:layout_constraintTop_toBottomOf="@+id/textView_result" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,11 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@android:color/transparent">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_in_row"
         app:strokeWidth="3dp"
-        style="@style/ButtonStyle"/>
+        style="@style/ButtonStyle"
+        android:textSize="@dimen/answer_font_size"/>
 
 </LinearLayout>
