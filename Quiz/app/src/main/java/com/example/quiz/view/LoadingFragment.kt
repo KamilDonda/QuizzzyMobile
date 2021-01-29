@@ -2,11 +2,13 @@ package com.example.quiz.view
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.quiz.R
@@ -17,6 +19,7 @@ import com.example.quiz.view_model.vm.QuestionViewModel
 import com.example.quiz.view_model.vm.ResultViewModel
 import kotlinx.android.synthetic.main.fragment_difficulty_level.textViewSelectedCategory
 import kotlinx.android.synthetic.main.fragment_loading.*
+import java.util.*
 
 class LoadingFragment : Fragment() {
 
@@ -49,7 +52,18 @@ class LoadingFragment : Fragment() {
         category = viewModelCategory.currentCategory.value!!
         difficulty = viewModelDifficulty.currentDifficultyLevel.value!!
 
-        viewModelQuestion.setCategoryAndDifficulty(category.id, difficulty.toLowerCase())
+        viewModelQuestion.setCategoryAndDifficulty(category.id, difficulty.toLowerCase(Locale.ROOT))
+
+        viewModelQuestion.quizList.observe(viewLifecycleOwner, Observer {
+            Log.v("TAGGG", "${viewModelQuestion.quizList.value}")
+            if(viewModelQuestion.quizList.value != null)
+                if (viewModelQuestion.quizList.value?.isNotEmpty()!!)
+                    findNavController().navigate(R.id.action_loadingFragment_to_questionFragment)
+                else {
+                    viewModelQuestion.setCategoryAndDifficulty(category.id)
+                    viewModelDifficulty.setCurrentDifficultyLevel("All")
+                }
+        })
 
         return inflater.inflate(R.layout.fragment_loading, container, false)
     }
@@ -64,8 +78,8 @@ class LoadingFragment : Fragment() {
         viewModelResult.ResetResultNumber()
 
         // navigate to another fragment after X seconds
-        Handler().postDelayed({
-            findNavController().navigate(R.id.action_loadingFragment_to_questionFragment)
-        }, 500)
+//        Handler().postDelayed({
+//            findNavController().navigate(R.id.action_loadingFragment_to_questionFragment)
+//        }, 500)
     }
 }

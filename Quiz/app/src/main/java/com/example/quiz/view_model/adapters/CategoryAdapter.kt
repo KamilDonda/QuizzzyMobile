@@ -17,7 +17,7 @@ class CategoryAdapter(val categories: List<Category>, val viewModel: CategoryVie
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.question_row, parent, false)
+            .inflate(R.layout.button_row, parent, false)
         return Holder(view)
     }
 

@@ -1,6 +1,7 @@
 package com.example.quiz.view_model.vm
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -30,6 +31,7 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
     }
     fun resetQuizNumber(): Int {
         _currentQuizNumber = 0
+        resetQuizList()
         resetProgressStatus()
         return _currentQuizNumber
     }
@@ -48,6 +50,9 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
     private val _quizList: MutableLiveData<List<Quiz>> = MutableLiveData()
     val quizList: LiveData<List<Quiz>>
         get() = _quizList
+    fun resetQuizList() {
+        _quizList.value = null
+    }
 
     init {
         setTimeIsUp(false)
