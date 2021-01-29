@@ -19,6 +19,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="BackgroundStyle">
+        <item name="android:background">@drawable/background_gradient</item>
+    </style>
+
     <style name="ButtonStyle" parent="TextAppearance.AppCompat.Widget.Button.Colored">
         <item name="android:layout_width">@dimen/button_size</item>
         <item name="android:layout_height">wrap_content</item>
