@@ -5,6 +5,7 @@
     <dimen name="button_size">300dp</dimen>
     <dimen name="button_font_size">25sp</dimen>
     <dimen name="button_padding">15dp</dimen>
+    <dimen name="button_padding_horizontal">5dp</dimen>
 
     <!-- Titles -->
     <dimen name="title_font_size">40sp</dimen>
