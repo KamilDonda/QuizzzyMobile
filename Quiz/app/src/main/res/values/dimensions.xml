@@ -5,6 +5,7 @@
     <dimen name="button_size">300dp</dimen>
     <dimen name="button_font_size">25sp</dimen>
     <dimen name="button_padding">15dp</dimen>
+    <dimen name="button_padding_horizontal">5dp</dimen>
 
     <!-- Titles -->
     <dimen name="title_font_size">40sp</dimen>
@@ -28,7 +29,7 @@
     <dimen name="result_font_size">30sp</dimen>
     <dimen name="landscape_font_size">22sp</dimen>
     <dimen name="padding_horizontal_history_rv">20px</dimen>
-    <dimen name="margin_top_history">20dp</dimen>
+    <dimen name="margin_history">5dp</dimen>
     <dimen name="padding_history">10dp</dimen>
     <dimen name="margin_horizontal_history">50dp</dimen>
 

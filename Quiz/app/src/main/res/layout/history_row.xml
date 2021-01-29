@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/row_color"
-    android:layout_marginTop="@dimen/margin_top_history"
+    android:layout_marginTop="@dimen/margin_history"
+    android:layout_marginBottom="@dimen/margin_history"
     android:padding="@dimen/padding_history">
     <TextView
         android:id="@+id/textView_date"
