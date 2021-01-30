@@ -45,6 +45,8 @@ class HistoryFragment : Fragment() {
 
         searchView.setQuery(viewModel.query.value, false)
         searchView.isIconified = false
+        searchView.clearFocus()
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
