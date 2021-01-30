@@ -9,5 +9,9 @@ class ResultRepository(val dao: ResultDao) {
 
     suspend fun insert(result: Result) = dao.insert(result)
 
-    fun getResultsWithFilters(categories: List<Int>) = dao.getResultsWithFilters(categories)
+    fun getResultsWithCategories(categories: List<Int>) = dao.getResultsWithCategories(categories)
+
+    fun getResultsWithFilters(categories: List<Int>, levels: List<String>) = dao.getResultsWithFilters(categories, levels)
+
+    fun getResultsWithLevels(levels: List<String>) = dao.getResultsWithLevels(levels)
 }

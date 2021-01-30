@@ -1,11 +1,7 @@
 package com.example.quiz.view_model.vm
 
 import android.app.Application
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.*
 import com.example.quiz.model.database.ResultDatabase
 import com.example.quiz.model.entities.Result
 import com.example.quiz.model.repository.ResultRepository
@@ -14,6 +10,7 @@ class HistoryViewModel (application: Application): AndroidViewModel(application)
     var allResults: LiveData<List<Result>>
 
     val listOfIds = MutableLiveData<List<Int>>()
+    val listOfLevels = MutableLiveData<List<String>>()
 
     private var _query: MutableLiveData<String> = MutableLiveData()
     val query: LiveData<String>
@@ -23,25 +20,51 @@ class HistoryViewModel (application: Application): AndroidViewModel(application)
         _query.value = text
     }
 
+    private val _diffs = listOf("Easy", "Medium", "Hard", "All")
+    val diffs = mutableSetOf("Easy", "Medium", "Hard", "All")
+
     private val repo = ResultRepository(ResultDatabase.getDatabase(application).resultDao())
+
+    private val combinedValues = MediatorLiveData<Pair<List<Int>?, List<String>?>>().apply {
+        addSource(listOfIds) {
+            value = Pair(it, listOfLevels.value)
+        }
+        addSource(listOfLevels) {
+            value = Pair(listOfIds.value, it)
+        }
+    }
 
     init{
         listOfIds.value = null
-        allResults = Transformations.switchMap(listOfIds){
-            if(it == null) {
-                return@switchMap repo.getAllResult
+        listOfLevels.value = _diffs
+        allResults = Transformations.switchMap(combinedValues){
+            val categories = it.first
+            val levels = it.second
+            if(categories == null) {
+                if(levels == null)
+                    return@switchMap repo.getAllResult
+                else
+                    return@switchMap repo.getResultsWithLevels(listOfLevels.value!!)
             }
             else {
-                return@switchMap repo.getResultsWithFilters(listOfIds.value!!)
+                if(levels == null)
+                    return@switchMap repo.getResultsWithCategories(listOfIds.value!!)
+                else
+                    return@switchMap repo.getResultsWithFilters(listOfIds.value!!, listOfLevels.value!!)
             }
         }
     }
 
-    fun setResultsWithFilters(ids: List<Int>){
+    fun setResultsWithCategories(ids: List<Int>){
         listOfIds.value = ids
+    }
+
+    fun setResultsWithLevels(levels: List<String>){
+        listOfLevels.value = levels
     }
 
     fun resetResults() {
         listOfIds.value = null
+        listOfLevels.value = _diffs
     }
 }

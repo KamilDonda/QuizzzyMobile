@@ -16,5 +16,11 @@ interface ResultDao {
     fun getAllResults(): LiveData<List<Result>>
 
     @Query("SELECT * FROM result_table WHERE category IN (:categories)")
-    fun getResultsWithFilters(categories: List<Int>): LiveData<List<Result>>
+    fun getResultsWithCategories(categories: List<Int>): LiveData<List<Result>>
+
+    @Query("SELECT * FROM result_table WHERE category IN (:categories) AND difficulty IN (:levels)")
+    fun getResultsWithFilters(categories: List<Int>, levels: List<String>): LiveData<List<Result>>
+
+    @Query("SELECT * FROM result_table WHERE difficulty IN (:levels)")
+    fun getResultsWithLevels(levels: List<String>): LiveData<List<Result>>
 }

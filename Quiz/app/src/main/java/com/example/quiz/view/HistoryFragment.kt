@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.core.view.children
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,7 +17,6 @@ import com.example.quiz.model.Category
 import com.example.quiz.view_model.adapters.HistoryAdapter
 import com.example.quiz.view_model.vm.HistoryViewModel
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import kotlinx.android.synthetic.main.fragment_history.*
 
 class HistoryFragment : Fragment() {
@@ -27,8 +25,6 @@ class HistoryFragment : Fragment() {
     private lateinit var myadapter: HistoryAdapter
     private lateinit var mylayoutmanager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
-
-    private val selectedIDs = mutableSetOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,8 +62,7 @@ class HistoryFragment : Fragment() {
                         if (it.name.contains(viewModel.query.value!!))
                             listOfIds.add(it.id ?: 0)
                     }
-                    viewModel.setResultsWithFilters(listOfIds)
-                    Log.v("TAGGG", listOfIds.toString())
+                    viewModel.setResultsWithCategories(listOfIds)
                 } else {
                     viewModel.resetResults()
                     viewModel.setQuery("")
@@ -79,9 +74,10 @@ class HistoryFragment : Fragment() {
         chipGroup.children.forEach {
             (it as Chip).setOnCheckedChangeListener { _, isChecked ->
                 if(isChecked)
-                    selectedIDs.add(it.text.toString())
+                    viewModel.diffs.add(it.text.toString())
                 else
-                    selectedIDs.remove(it.text.toString())
+                    viewModel.diffs.remove(it.text.toString())
+                viewModel.setResultsWithLevels(viewModel.diffs.toList())
             }
         }
 
