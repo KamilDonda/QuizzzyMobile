@@ -3,6 +3,7 @@ package com.example.quiz.view
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.media.MediaPlayer
 import android.os.Build
@@ -40,7 +41,7 @@ class QuestionFragment : Fragment() {
     private lateinit var myAdapter: AnswerAdapter
     private lateinit var recyclerView: RecyclerView
 
-    private val TIME = 10000
+    private val TIME = 20000
     private lateinit var progressBar: ProgressBar
     private lateinit var animator: ValueAnimator
 
@@ -57,7 +58,7 @@ class QuestionFragment : Fragment() {
         })
 
         // disable changing orientation
-        getActivity()?.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
     override fun onCreateView(
@@ -72,6 +73,7 @@ class QuestionFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_question, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
