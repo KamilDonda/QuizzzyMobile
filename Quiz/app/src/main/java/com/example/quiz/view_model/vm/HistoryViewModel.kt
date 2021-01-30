@@ -20,7 +20,6 @@ class HistoryViewModel (application: Application): AndroidViewModel(application)
         _query.value = text
     }
 
-    private val _diffs = listOf("Easy", "Medium", "Hard", "All")
     val diffs = mutableSetOf("Easy", "Medium", "Hard", "All")
 
     private val repo = ResultRepository(ResultDatabase.getDatabase(application).resultDao())
@@ -36,7 +35,7 @@ class HistoryViewModel (application: Application): AndroidViewModel(application)
 
     init{
         listOfIds.value = null
-        listOfLevels.value = _diffs
+        listOfLevels.value = diffs.toList()
         allResults = Transformations.switchMap(combinedValues){
             val categories = it.first
             val levels = it.second
@@ -65,6 +64,5 @@ class HistoryViewModel (application: Application): AndroidViewModel(application)
 
     fun resetResults() {
         listOfIds.value = null
-        listOfLevels.value = _diffs
     }
 }
