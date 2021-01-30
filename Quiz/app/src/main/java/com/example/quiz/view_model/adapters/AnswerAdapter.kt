@@ -103,6 +103,8 @@ class AnswerAdapter(
             val date = Date()
 
             Handler().postDelayed({
+                correctSound.release()
+                incorrectSound.release()
                 if (viewModel.incrementQuizNumber())
                     it.findNavController().navigate(R.id.action_questionFragment_self)
                 else {
