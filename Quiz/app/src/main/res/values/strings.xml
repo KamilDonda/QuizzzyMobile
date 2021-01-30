@@ -23,7 +23,7 @@
     <string name="kamil">Kamil Donda</string>
     <string name="remigiusz">Remigiusz Drobinski</string>
     <string name="robert">Robert Kwoll</string>
-    <string name="ApiDesc">The Open Trivia Database is a free, user contributed trivia database. The Open Trivia Database API offers a specified number of trivia questions via category, difficulty, type, encoding.</string>
+    <string name="ApiDesc">The Open Trivia Database is a free, user contributed trivia database. The Open Trivia Database API offers a specified number of trivia questions via category, difficulty, type and encoding.</string>
     <string name="AppDesc">The Quizzzy application will allow you to verify your knowledge in many areas. Each test contains 10 questions and each question contains 4 answers, however only one is correct. Have fun and develop your knowledge!</string>
 
     <!-- Other -->
