@@ -42,7 +42,7 @@ class ResultFragment : Fragment() {
         if (result < 4)
             textViewResultInfo.text = "Maybe next time.."
         if (result >= 4 && result < 7)
-            textViewResultInfo.text = "Nice or bad result?"
+            textViewResultInfo.text = "Not bad but could be better"
         if (result >= 7)
             textViewResultInfo.text = "Congratulations!"
 
