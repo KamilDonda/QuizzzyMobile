@@ -22,7 +22,7 @@ class CategoryFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        val categories = Category.listOfCategories
+        val categories = Category.listOfCategories.sortedBy { it.name }
 
         viewModel = ViewModelProvider(requireActivity()).get(CategoryViewModel::class.java)
         myAdapter = CategoryAdapter(categories, viewModel)
