@@ -79,5 +79,22 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+    
+    <style name="ChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:checkable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="chipBackgroundColor">@color/background_color_chip</item>
+        <item name="checkedIcon">@drawable/ic_mtrl_chip_checked_circle</item>
+        <item name="checkedIconVisible">true</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.MyApp.Chip.Choice</item>
+    </style>
+
+    <style name="ThemeOverlay.MyApp.Chip.Choice" parent="">
+        <item name="elevationOverlayEnabled">false</item>
+    </style>
 
 </resources>

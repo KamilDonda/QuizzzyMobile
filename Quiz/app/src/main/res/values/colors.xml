@@ -21,4 +21,6 @@
 
     <color name="start_color_n">#1D653A</color>
     <color name="end_color_n">@color/primary_color</color>
+
+    <color name="checked_chip_color">#aaaaaa</color>
 </resources>
