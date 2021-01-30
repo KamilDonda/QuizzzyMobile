@@ -41,11 +41,6 @@ class AboutFragment : Fragment() {
             startActivity(intent)
         }
 
-        textViewAppDescLink.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/KamilDonda/Quiz/blob/main/README.md"))
-            startActivity(intent)
-        }
-
         textViewKD.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/KamilDonda"))
             startActivity(intent)
