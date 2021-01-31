@@ -7,7 +7,6 @@ import android.media.MediaPlayer
 import android.os.Build
 import android.os.Handler
 import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,9 +22,9 @@ import com.example.quiz.view_model.vm.ResultViewModel
 import com.google.android.material.button.MaterialButton
 import java.util.*
 
-// create list of all buttons in adapter/recyclerview
 val Buttons = mutableListOf<MaterialButton>()
 
+@Suppress("DEPRECATION")
 class AnswerAdapter(
     val answers: List<String>,
     val viewModel: QuestionViewModel,
@@ -37,8 +36,8 @@ class AnswerAdapter(
     val animator: ValueAnimator,
     val category: Int,
     val difficulty: String,
-    val timerSound: MediaPlayer)
-    : RecyclerView.Adapter<AnswerAdapter.Holder>() {
+    val timerSound: MediaPlayer
+) : RecyclerView.Adapter<AnswerAdapter.Holder>() {
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -57,24 +56,20 @@ class AnswerAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val button = holder.itemView.findViewById<MaterialButton>(R.id.button_in_row)
 
-        // add button to list
         Buttons.add(button)
 
         button.text = Html.fromHtml(answers.get(position), Html.FROM_HTML_MODE_LEGACY)
 
         button.setOnClickListener {
-            // if any button is clicked then all buttons become non-clickable
             for (b in Buttons) b.isClickable = false
             animator.cancel()
 
-            // stop timer sound
             timerSound.release()
 
-            // onClick sound effect
             if (button.text.toString() == correct)
                 Handler().postDelayed({
                     correctSound.start()
-                },500)
+                }, 500)
             else
                 incorrectSound.start()
 
@@ -82,18 +77,53 @@ class AnswerAdapter(
                 if (button.text.toString() == correct) {
                     viewModelResult.IncrementResultNumber()
                     button.setTextColor(ContextCompat.getColor(context, R.color.correct_color))
-                    button.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.correct_color))
-                    button.setBackgroundColor(ContextCompat.getColor(context, R.color.correct_background_color))
+                    button.strokeColor = ColorStateList.valueOf(
+                        ContextCompat.getColor(
+                            context,
+                            R.color.correct_color
+                        )
+                    )
+                    button.setBackgroundColor(
+                        ContextCompat.getColor(
+                            context,
+                            R.color.correct_background_color
+                        )
+                    )
                 } else {
                     button.setTextColor(ContextCompat.getColor(context, R.color.incorrect_color))
-                    button.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.incorrect_color))
-                    button.setBackgroundColor(ContextCompat.getColor(context, R.color.incorrect_background_color))
+                    button.strokeColor = ColorStateList.valueOf(
+                        ContextCompat.getColor(
+                            context,
+                            R.color.incorrect_color
+                        )
+                    )
+                    button.setBackgroundColor(
+                        ContextCompat.getColor(
+                            context,
+                            R.color.incorrect_background_color
+                        )
+                    )
                     Handler().postDelayed({
                         for (b in Buttons) {
                             if (b.text.toString() == correct) {
-                                b.setTextColor(ContextCompat.getColor(context, R.color.correct_color))
-                                b.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.correct_color))
-                                b.setBackgroundColor(ContextCompat.getColor(context, R.color.correct_background_color))
+                                b.setTextColor(
+                                    ContextCompat.getColor(
+                                        context,
+                                        R.color.correct_color
+                                    )
+                                )
+                                b.strokeColor = ColorStateList.valueOf(
+                                    ContextCompat.getColor(
+                                        context,
+                                        R.color.correct_color
+                                    )
+                                )
+                                b.setBackgroundColor(
+                                    ContextCompat.getColor(
+                                        context,
+                                        R.color.correct_background_color
+                                    )
+                                )
                             }
                         }
                     }, 500)
@@ -121,8 +151,18 @@ class AnswerAdapter(
                     b.isClickable = false
                     if (b.text.toString() == correct) {
                         b.setTextColor(ContextCompat.getColor(context, R.color.correct_color))
-                        b.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.correct_color))
-                        b.setBackgroundColor(ContextCompat.getColor(context, R.color.correct_background_color))
+                        b.strokeColor = ColorStateList.valueOf(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.correct_color
+                            )
+                        )
+                        b.setBackgroundColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.correct_background_color
+                            )
+                        )
                     }
                 }
 
@@ -132,7 +172,8 @@ class AnswerAdapter(
                     if (viewModel.incrementQuizNumber())
                         view.findNavController().navigate(R.id.action_questionFragment_self)
                     else
-                        view.findNavController().navigate(R.id.action_questionFragment_to_resultFragment)
+                        view.findNavController()
+                            .navigate(R.id.action_questionFragment_to_resultFragment)
                 }, 2000)
             }
         })
