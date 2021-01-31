@@ -64,7 +64,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_github_logo" />
+            app:srcCompat="@drawable/ic_github_logo"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textViewGithub"
@@ -72,11 +73,12 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:text="@string/github"
             android:textColor="#141540"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="RtlSymmetry" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -99,17 +101,19 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_polsl_logo" />
+            app:srcCompat="@drawable/ic_polsl_logo"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textViewPolsl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:text="@string/polsl"
             android:textColor="#141540"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="RtlSymmetry" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -133,13 +137,14 @@
             android:layout_gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3"
-            app:srcCompat="@drawable/ic_wydzial_logo" />
+            app:srcCompat="@drawable/ic_wydzial_logo"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textViewFoAM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:text="@string/rms"
             android:textColor="#141540"
             android:textSize="22sp"
@@ -148,7 +153,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.22"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="@+id/imageView4" />
+            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            tools:ignore="RtlSymmetry" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

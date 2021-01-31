@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/textViewCategory"
         style="@style/CategoryNameStyle"
-        android:text="Science &amp; Nature"
+        android:text="@string/science_amp_nature"
         app:layout_constraintBottom_toTopOf="@+id/textView_currentQuestion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
