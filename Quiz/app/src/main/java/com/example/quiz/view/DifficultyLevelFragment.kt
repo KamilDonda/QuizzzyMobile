@@ -28,7 +28,7 @@ class DifficultyLevelFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(DifficultyLevelViewModel::class.java)
         viewModelCategory = ViewModelProvider(requireActivity()).get(CategoryViewModel::class.java)
-        myAdapter = DifficultyLevelAdapter(levels, viewModel)
+        myAdapter = DifficultyLevelAdapter(levels, viewModel, requireActivity(), requireContext())
 
         return inflater.inflate(R.layout.fragment_difficulty_level, container, false)
     }
