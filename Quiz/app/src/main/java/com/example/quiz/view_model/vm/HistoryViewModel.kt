@@ -9,8 +9,8 @@ import com.example.quiz.model.repository.ResultRepository
 class HistoryViewModel(application: Application) : AndroidViewModel(application) {
     var allResults: LiveData<List<Result>>
 
-    val listOfIds = MutableLiveData<List<Int>>()
-    val listOfLevels = MutableLiveData<List<String>>()
+    private val listOfIds = MutableLiveData<List<Int>>()
+    private val listOfLevels = MutableLiveData<List<String>>()
 
     private var _query: MutableLiveData<String> = MutableLiveData()
     val query: LiveData<String>

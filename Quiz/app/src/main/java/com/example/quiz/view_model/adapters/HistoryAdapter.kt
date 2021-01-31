@@ -14,7 +14,8 @@ import com.example.quiz.model.Category
 import com.example.quiz.model.entities.Result
 import java.text.SimpleDateFormat
 
-class HistoryAdapter(var history: LiveData<List<Result>>) :
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+class HistoryAdapter(private var history: LiveData<List<Result>>) :
     RecyclerView.Adapter<HistoryAdapter.HistoryHolder>() {
 
     inner class HistoryHolder(view: View) : RecyclerView.ViewHolder(view)

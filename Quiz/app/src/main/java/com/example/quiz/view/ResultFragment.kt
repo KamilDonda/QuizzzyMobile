@@ -1,5 +1,6 @@
 package com.example.quiz.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,10 +33,11 @@ class ResultFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_result, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val result = viewModelResult.result;
+        val result = viewModelResult.result
 
         if (result < 4)
             textViewResultInfo.text = "Maybe next time.."
@@ -44,7 +46,7 @@ class ResultFragment : Fragment() {
         if (result >= 7)
             textViewResultInfo.text = "Congratulations!"
 
-        textViewResult.text = result.toString() + "/10"
+        textViewResult.text = "$result/10"
 
         imageViewArrow.setOnClickListener {
             imageViewArrow.animate().rotationBy(imageViewArrow.rotation + 370).withEndAction {

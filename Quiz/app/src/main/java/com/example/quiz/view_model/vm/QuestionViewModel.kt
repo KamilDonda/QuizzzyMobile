@@ -46,7 +46,7 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
         _progressStatus = time
     }
 
-    fun resetProgressStatus() {
+    private fun resetProgressStatus() {
         _progressStatus = 0
     }
 
@@ -54,7 +54,7 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
     val quizList: LiveData<List<Quiz>>
         get() = _quizList
 
-    fun resetQuizList() {
+    private fun resetQuizList() {
         _quizList.value = null
     }
 
@@ -74,7 +74,7 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun setQuizList() {
+    private fun setQuizList() {
         viewModelScope.launch {
             _quizList.value = QuizRepository
                 .getQuiz()
@@ -82,7 +82,7 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun setQuizList(category: Int) {
+    private fun setQuizList(category: Int) {
         viewModelScope.launch {
             _quizList.value = QuizRepository
                 .getQuizFromCategory(category)
@@ -90,7 +90,7 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun setQuizList(category: Int, difficulty: String) {
+    private fun setQuizList(category: Int, difficulty: String) {
         viewModelScope.launch {
             _quizList.value = QuizRepository
                 .getQuizFromCategoryWithDiffcultyLevel(category, difficulty)
@@ -98,13 +98,13 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun getCurrentQuestion() = _quizList.value!!.get(_currentQuizNumber).question
+    fun getCurrentQuestion() = _quizList.value!![_currentQuizNumber].question
 
-    fun getCurrentCorrectAnswer() = _quizList.value!!.get(_currentQuizNumber).correct_answer
+    fun getCurrentCorrectAnswer() = _quizList.value!![_currentQuizNumber].correct_answer
 
     fun getCurrentAnswers(): List<String> {
         val list: MutableList<String> =
-            _quizList.value!!.get(_currentQuizNumber).incorrect_answers as MutableList<String>
+            _quizList.value!![_currentQuizNumber].incorrect_answers as MutableList<String>
         val correct = getCurrentCorrectAnswer()
         if (!list.contains(correct))
             list.add(correct)
@@ -112,5 +112,5 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
         return list
     }
 
-    fun getCurrentCategory() = _quizList.value!!.get(_currentQuizNumber).category
+    fun getCurrentCategory() = _quizList.value!![_currentQuizNumber].category
 }

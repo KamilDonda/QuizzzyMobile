@@ -26,17 +26,17 @@ val Buttons = mutableListOf<MaterialButton>()
 
 @Suppress("DEPRECATION")
 class AnswerAdapter(
-    val answers: List<String>,
-    val viewModel: QuestionViewModel,
-    val viewModelResult: ResultViewModel,
-    val correct: String,
+    private val answers: List<String>,
+    private val viewModel: QuestionViewModel,
+    private val viewModelResult: ResultViewModel,
+    private val correct: String,
     val context: Context,
-    val viewLifecycleOwner: LifecycleOwner,
+    private val viewLifecycleOwner: LifecycleOwner,
     val view: View,
-    val animator: ValueAnimator,
+    private val animator: ValueAnimator,
     val category: Int,
     val difficulty: String,
-    val timerSound: MediaPlayer
+    private val timerSound: MediaPlayer
 ) : RecyclerView.Adapter<AnswerAdapter.Holder>() {
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view)
@@ -58,7 +58,7 @@ class AnswerAdapter(
 
         Buttons.add(button)
 
-        button.text = Html.fromHtml(answers.get(position), Html.FROM_HTML_MODE_LEGACY)
+        button.text = Html.fromHtml(answers[position], Html.FROM_HTML_MODE_LEGACY)
 
         button.setOnClickListener {
             for (b in Buttons) b.isClickable = false
@@ -75,7 +75,7 @@ class AnswerAdapter(
 
             Handler().postDelayed({
                 if (button.text.toString() == correct) {
-                    viewModelResult.IncrementResultNumber()
+                    viewModelResult.incrementResultNumber()
                     button.setTextColor(ContextCompat.getColor(context, R.color.correct_color))
                     button.strokeColor = ColorStateList.valueOf(
                         ContextCompat.getColor(

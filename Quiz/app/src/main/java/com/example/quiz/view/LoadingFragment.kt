@@ -71,6 +71,6 @@ class LoadingFragment : Fragment() {
         textViewSelectedCategory.text = category.name
 
         viewModelQuestion.resetQuizNumber()
-        viewModelResult.ResetResultNumber()
+        viewModelResult.resetResultNumber()
     }
 }
