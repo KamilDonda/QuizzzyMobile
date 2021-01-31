@@ -33,6 +33,8 @@
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
     <string name="all">All</string>
+    <string name="no_internet">Error! Please, check your internet connection!</string>
+    <string name="no_diff">Error! There are no quizzes with this difficulty level for the selected category. Downloading all difficulty levels … </string>
 
     <!-- Result -->
     <string name="your_result">Your result :</string>

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -62,6 +63,7 @@ class LoadingFragment : Fragment() {
                 else {
                     viewModelQuestion.setCategoryAndDifficulty(category.id)
                     viewModelDifficulty.setCurrentDifficultyLevel("All")
+                    Toast.makeText(context, getString(R.string.no_diff), Toast.LENGTH_LONG).show()
                 }
         })
 
