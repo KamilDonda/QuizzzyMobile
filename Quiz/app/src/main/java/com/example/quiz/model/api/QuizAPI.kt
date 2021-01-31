@@ -15,7 +15,8 @@ interface QuizAPI {
 
     @GET("api.php?amount=10&type=multiple")
     fun getQuizFromCategoryWithDiffcultyLevel(
-            @Query("category") category: Int,
-            @Query("difficulty") difficulty: String): Call<Data>
+        @Query("category") category: Int,
+        @Query("difficulty") difficulty: String
+    ): Call<Data>
 
 }

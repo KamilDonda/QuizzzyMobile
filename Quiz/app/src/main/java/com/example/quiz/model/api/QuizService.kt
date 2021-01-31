@@ -8,9 +8,9 @@ const val BASE_URL = "https://opentdb.com/"
 object QuizService {
     private val retrofit by lazy {
         Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
     val api: QuizAPI by lazy {
         retrofit.create(QuizAPI::class.java)
