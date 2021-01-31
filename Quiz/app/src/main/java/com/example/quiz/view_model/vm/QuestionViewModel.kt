@@ -1,7 +1,6 @@
 package com.example.quiz.view_model.vm
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,6 +14,7 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
     private val _timeIsUp = MutableLiveData<Boolean>()
     val timeIsUp: LiveData<Boolean>
         get() = _timeIsUp
+
     fun setTimeIsUp(bool: Boolean) {
         _timeIsUp.value = bool
     }
@@ -22,6 +22,7 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
     private var _currentQuizNumber = 0
     val currentQuizNumber: Int
         get() = _currentQuizNumber
+
     fun incrementQuizNumber(): Boolean {
         val bool = _currentQuizNumber < _quizList.value!!.size - 1
         if (bool) _currentQuizNumber++
@@ -29,6 +30,7 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
         resetProgressStatus()
         return bool
     }
+
     fun resetQuizNumber(): Int {
         _currentQuizNumber = 0
         resetQuizList()
@@ -39,17 +41,19 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
     private var _progressStatus: Int = 0
     val progressStatus: Int
         get() = _progressStatus
+
     fun incrementProgressStatus(time: Int) {
         _progressStatus = time
     }
+
     fun resetProgressStatus() {
         _progressStatus = 0
     }
 
-    // our list of questions
     private val _quizList: MutableLiveData<List<Quiz>> = MutableLiveData()
     val quizList: LiveData<List<Quiz>>
         get() = _quizList
+
     fun resetQuizList() {
         _quizList.value = null
     }
@@ -70,34 +74,27 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    // download data from API and save it into _questionList
     fun setQuizList() {
         viewModelScope.launch {
-            // our Quiz has two properties: response_code and results
-            // results is a list of Questions
             _quizList.value = QuizRepository
-                    .getQuiz()
-                    .results
+                .getQuiz()
+                .results
         }
     }
 
     fun setQuizList(category: Int) {
         viewModelScope.launch {
-            // our Quiz has two properties: response_code and results
-            // results is a list of Questions
             _quizList.value = QuizRepository
-                    .getQuizFromCategory(category)
-                    .results
+                .getQuizFromCategory(category)
+                .results
         }
     }
 
     fun setQuizList(category: Int, difficulty: String) {
         viewModelScope.launch {
-            // our Quiz has two properties: response_code and results
-            // results is a list of Questions
             _quizList.value = QuizRepository
-                    .getQuizFromCategoryWithDiffcultyLevel(category, difficulty)
-                    .results
+                .getQuizFromCategoryWithDiffcultyLevel(category, difficulty)
+                .results
         }
     }
 
@@ -106,7 +103,8 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
     fun getCurrentCorrectAnswer() = _quizList.value!!.get(_currentQuizNumber).correct_answer
 
     fun getCurrentAnswers(): List<String> {
-        val list: MutableList<String> = _quizList.value!!.get(_currentQuizNumber).incorrect_answers as MutableList<String>
+        val list: MutableList<String> =
+            _quizList.value!!.get(_currentQuizNumber).incorrect_answers as MutableList<String>
         val correct = getCurrentCorrectAnswer()
         if (!list.contains(correct))
             list.add(correct)
