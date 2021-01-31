@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
     android:gravity="center"
-    android:background="@android:color/transparent">
+    android:orientation="vertical">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_in_row"
-        app:strokeWidth="3dp"
         style="@style/ButtonStyle"
-        android:textSize="@dimen/answer_font_size"/>
+        android:textSize="@dimen/answer_font_size"
+        app:strokeWidth="3dp" />
 
 </LinearLayout>
