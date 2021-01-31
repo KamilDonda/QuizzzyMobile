@@ -1,12 +1,10 @@
 package com.example.quiz.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
@@ -22,7 +20,8 @@ class DifficultyLevelFragment : Fragment() {
     private lateinit var myAdapter: DifficultyLevelAdapter
     private lateinit var recyclerView: RecyclerView
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
         val levels = listOf("Easy", "Medium", "Hard", "All")

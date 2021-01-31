@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/row_color"
     android:layout_marginTop="@dimen/margin_history"
     android:layout_marginBottom="@dimen/margin_history"
+    android:background="@color/row_color"
     android:padding="@dimen/padding_history">
 
     <TextView
@@ -18,8 +18,8 @@
 
     <TextView
         android:id="@+id/textView_category"
-        android:layout_marginLeft="@dimen/margin_horizontal_history"
         style="@style/HistoryTextViewStyle"
+        android:layout_marginLeft="@dimen/margin_horizontal_history"
         android:textSize="@dimen/landscape_font_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView_date"
@@ -34,8 +34,8 @@
 
     <TextView
         android:id="@+id/textView_difficultylevel"
-        android:layout_marginRight="@dimen/margin_horizontal_history"
         style="@style/HistoryTextViewStyle"
+        android:layout_marginRight="@dimen/margin_horizontal_history"
         android:textSize="@dimen/landscape_font_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView_result"

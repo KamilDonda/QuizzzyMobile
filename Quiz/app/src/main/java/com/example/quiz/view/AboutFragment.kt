@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_about.*
 class AboutFragment : Fragment() {
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_about, container, false)
     }
@@ -27,7 +27,8 @@ class AboutFragment : Fragment() {
         }
 
         linearPolsl.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.polsl.pl/Strony/Witamy.aspx"))
+            val intent =
+                Intent(Intent.ACTION_VIEW, Uri.parse("https://www.polsl.pl/Strony/Witamy.aspx"))
             startActivity(intent)
         }
 

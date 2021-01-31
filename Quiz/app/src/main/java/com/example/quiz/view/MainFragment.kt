@@ -20,10 +20,16 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        button_start.setOnClickListener { it.findNavController().navigate(R.id.action_mainFragment_to_categoryFragment) }
+        button_start.setOnClickListener {
+            it.findNavController().navigate(R.id.action_mainFragment_to_categoryFragment)
+        }
 
-        button_history.setOnClickListener { it.findNavController().navigate(R.id.action_mainFragment_to_historyFragment)}
+        button_history.setOnClickListener {
+            it.findNavController().navigate(R.id.action_mainFragment_to_historyFragment)
+        }
 
-        button_about.setOnClickListener { it.findNavController().navigate(R.id.action_mainFragment_to_aboutFragment) }
+        button_about.setOnClickListener {
+            it.findNavController().navigate(R.id.action_mainFragment_to_aboutFragment)
+        }
     }
 }

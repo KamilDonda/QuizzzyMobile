@@ -10,8 +10,11 @@ import com.example.quiz.R
 import com.example.quiz.model.Category
 import com.example.quiz.view_model.vm.CategoryViewModel
 
-class CategoryAdapter(val categories: List<Category>, val viewModel: CategoryViewModel)
-    : RecyclerView.Adapter<CategoryAdapter.Holder>() {
+class CategoryAdapter(
+    private val categories: List<Category>,
+    private val viewModel: CategoryViewModel
+) :
+    RecyclerView.Adapter<CategoryAdapter.Holder>() {
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -26,12 +29,11 @@ class CategoryAdapter(val categories: List<Category>, val viewModel: CategoryVie
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val button = holder.itemView.findViewById<Button>(R.id.button_in_row)
 
-        button.text = categories.get(position).name
+        button.text = categories[position].name
 
         button.setOnClickListener {
-            viewModel.setCurrentCategory(categories.get(position))
+            viewModel.setCurrentCategory(categories[position])
             it.findNavController().navigate(R.id.action_categoryFragment_to_difficultyLevelFragment)
         }
     }
-
 }

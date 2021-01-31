@@ -8,10 +8,7 @@ import android.content.pm.ActivityInfo
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.SystemClock
 import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +18,6 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
 import com.example.quiz.view_model.adapters.AnswerAdapter
@@ -52,23 +48,21 @@ class QuestionFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                // in here you can do logic when backPress is clicked
-            }
+            override fun handleOnBackPressed() {}
         })
 
-        // disable changing orientation
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
         viewModel = ViewModelProvider(requireActivity()).get(QuestionViewModel::class.java)
         viewModelResult = ViewModelProvider(requireActivity()).get(ResultViewModel::class.java)
         viewModelCategory = ViewModelProvider(requireActivity()).get(CategoryViewModel::class.java)
-        viewModelDifficulty = ViewModelProvider(requireActivity()).get(DifficultyLevelViewModel::class.java)
+        viewModelDifficulty =
+            ViewModelProvider(requireActivity()).get(DifficultyLevelViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_question, container, false)
     }
@@ -86,24 +80,27 @@ class QuestionFragment : Fragment() {
 
         viewModel.quizList.observe(viewLifecycleOwner, Observer {
             myAdapter = AnswerAdapter(
-                    viewModel.getCurrentAnswers(),
-                    viewModel,
-                    viewModelResult,
-                    Html.fromHtml(viewModel.getCurrentCorrectAnswer(), Html.FROM_HTML_MODE_LEGACY).toString(),
-                    requireContext(),
-                    viewLifecycleOwner,
-                    view,
-                    animator,
-                    viewModelCategory.currentCategory.value?.id ?: 0,
-                    viewModelDifficulty.currentDifficultyLevel.value!!,
-                    timerSound
+                viewModel.getCurrentAnswers(),
+                viewModel,
+                viewModelResult,
+                Html.fromHtml(viewModel.getCurrentCorrectAnswer(), Html.FROM_HTML_MODE_LEGACY)
+                    .toString(),
+                requireContext(),
+                viewLifecycleOwner,
+                view,
+                animator,
+                viewModelCategory.currentCategory.value?.id ?: 0,
+                viewModelDifficulty.currentDifficultyLevel.value!!,
+                timerSound
             )
             myAdapter.notifyDataSetChanged()
 
-            textView_Question.text = Html.fromHtml(viewModel.getCurrentQuestion(), Html.FROM_HTML_MODE_LEGACY)
-//            Log.v("TAGGG", "${viewModel.getCurrentAnswers()}\n${viewModel.getCurrentCorrectAnswer()}\n${viewModel.currentQuizNumber}")
-            textView_currentQuestion.text = "${getString(R.string.question)} ${viewModel.currentQuizNumber + 1}"
-            textViewCategory.text = Html.fromHtml(viewModel.getCurrentCategory(), Html.FROM_HTML_MODE_LEGACY)
+            textView_Question.text =
+                Html.fromHtml(viewModel.getCurrentQuestion(), Html.FROM_HTML_MODE_LEGACY)
+            textView_currentQuestion.text =
+                "${getString(R.string.question)} ${viewModel.currentQuizNumber + 1}"
+            textViewCategory.text =
+                Html.fromHtml(viewModel.getCurrentCategory(), Html.FROM_HTML_MODE_LEGACY)
 
             recyclerView = recyclerView_answer.apply {
                 adapter = myAdapter
@@ -144,7 +141,7 @@ class QuestionFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         animator.resume()
-        if(isReleased) {
+        if (isReleased) {
             timerSound = MediaPlayer.create(context, R.raw.timer)
             timerSound.isLooping = true
             timerSound.start()

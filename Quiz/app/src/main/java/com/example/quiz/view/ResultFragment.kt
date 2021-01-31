@@ -1,5 +1,6 @@
 package com.example.quiz.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,38 +20,38 @@ class ResultFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                // in here you can do logic when backPress is clicked
-            }
+            override fun handleOnBackPressed() {}
         })
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
         viewModelResult = ViewModelProvider(requireActivity()).get(ResultViewModel::class.java)
 
-        return inflater.inflate(com.example.quiz.R.layout.fragment_result, container, false)
+        return inflater.inflate(R.layout.fragment_result, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val result = viewModelResult.result;
+        val result = viewModelResult.result
 
         if (result < 4)
             textViewResultInfo.text = "Maybe next time.."
-        if (result >= 4 && result < 7)
+        if (result in 4..6)
             textViewResultInfo.text = "Not bad but could be better"
         if (result >= 7)
             textViewResultInfo.text = "Congratulations!"
 
-        textViewResult.text = result.toString() + "/10"
+        textViewResult.text = "$result/10"
 
         imageViewArrow.setOnClickListener {
-            imageViewArrow.animate().rotationBy(imageViewArrow.rotation + 370).withEndAction{ it.findNavController().navigate(R.id.action_resultFragment_to_categoryFragment) }.start()
+            imageViewArrow.animate().rotationBy(imageViewArrow.rotation + 370).withEndAction {
+                it.findNavController().navigate(R.id.action_resultFragment_to_categoryFragment)
+            }.start()
         }
-
     }
 }

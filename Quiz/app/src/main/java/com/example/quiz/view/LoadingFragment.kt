@@ -1,8 +1,6 @@
 package com.example.quiz.view
 
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +22,7 @@ import java.util.*
 
 class LoadingFragment : Fragment() {
 
-    private lateinit var viewModelDifficulty : DifficultyLevelViewModel
+    private lateinit var viewModelDifficulty: DifficultyLevelViewModel
     private lateinit var viewModelCategory: CategoryViewModel
     private lateinit var viewModelQuestion: QuestionViewModel
     private lateinit var viewModelResult: ResultViewModel
@@ -35,17 +33,16 @@ class LoadingFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                // in here you can do logic when backPress is clicked
-            }
+            override fun handleOnBackPressed() {}
         })
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        viewModelDifficulty = ViewModelProvider(requireActivity()).get(DifficultyLevelViewModel::class.java)
+        viewModelDifficulty =
+            ViewModelProvider(requireActivity()).get(DifficultyLevelViewModel::class.java)
         viewModelCategory = ViewModelProvider(requireActivity()).get(CategoryViewModel::class.java)
         viewModelQuestion = ViewModelProvider(requireActivity()).get(QuestionViewModel::class.java)
         viewModelResult = ViewModelProvider(requireActivity()).get(ResultViewModel::class.java)
@@ -56,8 +53,7 @@ class LoadingFragment : Fragment() {
         viewModelQuestion.setCategoryAndDifficulty(category.id, difficulty.toLowerCase(Locale.ROOT))
 
         viewModelQuestion.quizList.observe(viewLifecycleOwner, Observer {
-            Log.v("TAGGG", "${viewModelQuestion.quizList.value}")
-            if(viewModelQuestion.quizList.value != null)
+            if (viewModelQuestion.quizList.value != null)
                 if (viewModelQuestion.quizList.value?.isNotEmpty()!!)
                     findNavController().navigate(R.id.action_loadingFragment_to_questionFragment)
                 else {
@@ -77,11 +73,6 @@ class LoadingFragment : Fragment() {
         textViewSelectedCategory.text = category.name
 
         viewModelQuestion.resetQuizNumber()
-        viewModelResult.ResetResultNumber()
-
-        // navigate to another fragment after X seconds
-//        Handler().postDelayed({
-//            findNavController().navigate(R.id.action_loadingFragment_to_questionFragment)
-//        }, 500)
+        viewModelResult.resetResultNumber()
     }
 }

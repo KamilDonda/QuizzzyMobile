@@ -4,15 +4,14 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.quiz.model.Category
 
-class DifficultyLevelViewModel(application: Application): AndroidViewModel(application) {
+class DifficultyLevelViewModel(application: Application) : AndroidViewModel(application) {
 
     private var _currentDifficultyLevel: MutableLiveData<String> = MutableLiveData()
     val currentDifficultyLevel: LiveData<String>
-    get() = _currentDifficultyLevel
+        get() = _currentDifficultyLevel
 
-    fun setCurrentDifficultyLevel(level: String){
+    fun setCurrentDifficultyLevel(level: String) {
         _currentDifficultyLevel.value = level
     }
 }

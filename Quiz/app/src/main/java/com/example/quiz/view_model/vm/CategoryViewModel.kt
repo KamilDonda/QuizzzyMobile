@@ -6,13 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.quiz.model.Category
 
-class CategoryViewModel(application: Application): AndroidViewModel(application) {
+class CategoryViewModel(application: Application) : AndroidViewModel(application) {
 
     private var _currentCategory: MutableLiveData<Category> = MutableLiveData()
     val currentCategory: LiveData<Category>
-    get() = _currentCategory
+        get() = _currentCategory
 
-    fun setCurrentCategory(category: Category){
+    fun setCurrentCategory(category: Category) {
         _currentCategory.value = category
     }
 }

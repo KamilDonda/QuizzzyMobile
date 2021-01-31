@@ -3,21 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/row_color"
     android:layout_marginTop="@dimen/margin_history"
     android:layout_marginBottom="@dimen/margin_history"
+    android:background="@color/row_color"
     android:padding="@dimen/padding_history">
+
     <TextView
         android:id="@+id/textView_date"
         style="@style/HistoryTextViewStyle"
         android:textSize="@dimen/date_font_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView_category"
         style="@style/HistoryTextViewStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/textView_result"
         style="@style/HistoryTextViewStyle"

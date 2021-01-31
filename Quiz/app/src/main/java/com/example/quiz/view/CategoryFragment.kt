@@ -19,7 +19,8 @@ class CategoryFragment : Fragment() {
     private lateinit var myAdapter: CategoryAdapter
     private lateinit var recyclerView: RecyclerView
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
         val categories = Category.listOfCategories.sortedBy { it.name }

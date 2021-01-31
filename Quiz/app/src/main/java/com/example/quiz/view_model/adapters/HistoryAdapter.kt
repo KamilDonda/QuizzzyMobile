@@ -14,18 +14,19 @@ import com.example.quiz.model.Category
 import com.example.quiz.model.entities.Result
 import java.text.SimpleDateFormat
 
-class HistoryAdapter (var history: LiveData<List<Result>>):
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+class HistoryAdapter(private var history: LiveData<List<Result>>) :
     RecyclerView.Adapter<HistoryAdapter.HistoryHolder>() {
 
-    inner class HistoryHolder(view: View): RecyclerView.ViewHolder(view)
+    inner class HistoryHolder(view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.history_row,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.history_row, parent, false)
         return HistoryHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return history.value?.size?:0
+        return history.value?.size ?: 0
     }
 
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
@@ -37,11 +38,12 @@ class HistoryAdapter (var history: LiveData<List<Result>>):
         val result = holder.itemView.findViewById<TextView>(R.id.textView_result)
 
         val dateFromBDatabase = history.value?.get(position)?.date
-        val format = SimpleDateFormat("dd\t\u200B\t/\t\u200B\tMM\t\u200B\t/\t\u200B\tyyyy  HH﹕mm﹕ss")
+        val format =
+            SimpleDateFormat("dd\t\u200B\t/\t\u200B\tMM\t\u200B\t/\t\u200B\tyyyy  HH﹕mm﹕ss")
         val newDate = format.format(dateFromBDatabase)
 
         var catId = history.value?.get(position)?.category
-        catId = if(catId == 0) null else catId
+        catId = if (catId == 0) null else catId
 
         date.text = newDate
         category.text = Category.listOfCategories.find { c -> c.id == catId }?.name
