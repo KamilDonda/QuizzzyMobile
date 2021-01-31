@@ -11,7 +11,8 @@ class ResultRepository(val dao: ResultDao) {
 
     fun getResultsWithCategories(categories: List<Int>) = dao.getResultsWithCategories(categories)
 
-    fun getResultsWithFilters(categories: List<Int>, levels: List<String>) = dao.getResultsWithFilters(categories, levels)
+    fun getResultsWithFilters(categories: List<Int>, levels: List<String>) =
+        dao.getResultsWithFilters(categories, levels)
 
     fun getResultsWithLevels(levels: List<String>) = dao.getResultsWithLevels(levels)
 }

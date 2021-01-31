@@ -15,18 +15,18 @@ import com.example.quiz.model.entities.Result
     exportSchema = false
 )
 @TypeConverters(Converters::class)
-abstract class ResultDatabase: RoomDatabase() {
+abstract class ResultDatabase : RoomDatabase() {
     abstract fun resultDao(): ResultDao
 
     companion object {
         @Volatile
         private var INSTANCE: ResultDatabase? = null
-        private val NAME = "result_database"
+        private const val NAME = "result_database"
 
         fun getDatabase(context: Context): ResultDatabase {
             val tempInstance = INSTANCE
 
-            if(tempInstance != null) return tempInstance
+            if (tempInstance != null) return tempInstance
             else
                 synchronized(this) {
                     val instance = Room.databaseBuilder(

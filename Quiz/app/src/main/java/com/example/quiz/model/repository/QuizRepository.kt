@@ -5,18 +5,17 @@ import com.example.quiz.model.entities.Data
 import retrofit2.awaitResponse
 
 class QuizRepository {
-    companion object{
+    companion object {
 
-        suspend fun getQuiz(): Data
-                = QuizService.api
-                .getQuiz().awaitResponse().body()!!
+        suspend fun getQuiz(): Data = QuizService.api
+            .getQuiz().awaitResponse().body()!!
 
-        suspend fun getQuizFromCategory(category: Int): Data
-                = QuizService.api.getQuizFromCategory(category)
+        suspend fun getQuizFromCategory(category: Int): Data =
+            QuizService.api.getQuizFromCategory(category)
                 .awaitResponse().body()!!
 
-        suspend fun getQuizFromCategoryWithDiffcultyLevel(category: Int, diffculty: String): Data
-                = QuizService.api.getQuizFromCategoryWithDiffcultyLevel(category, diffculty)
+        suspend fun getQuizFromCategoryWithDiffcultyLevel(category: Int, diffculty: String): Data =
+            QuizService.api.getQuizFromCategoryWithDiffcultyLevel(category, diffculty)
                 .awaitResponse().body()!!
     }
 }
