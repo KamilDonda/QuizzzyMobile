@@ -93,7 +93,7 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
     private fun setQuizList(category: Int, difficulty: String) {
         viewModelScope.launch {
             _quizList.value = QuizRepository
-                .getQuizFromCategoryWithDiffcultyLevel(category, difficulty)
+                .getQuizFromCategoryWithDifficultyLevel(category, difficulty)
                 .results
         }
     }

@@ -14,8 +14,8 @@ class QuizRepository {
             QuizService.api.getQuizFromCategory(category)
                 .awaitResponse().body()!!
 
-        suspend fun getQuizFromCategoryWithDiffcultyLevel(category: Int, diffculty: String): Data =
-            QuizService.api.getQuizFromCategoryWithDiffcultyLevel(category, diffculty)
+        suspend fun getQuizFromCategoryWithDifficultyLevel(category: Int, difficulty: String): Data =
+            QuizService.api.getQuizFromCategoryWithDifficultyLevel(category, difficulty)
                 .awaitResponse().body()!!
     }
 }

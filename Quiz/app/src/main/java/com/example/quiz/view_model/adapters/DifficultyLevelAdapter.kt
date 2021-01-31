@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quiz.R
 import com.example.quiz.view_model.vm.DifficultyLevelViewModel
 
-class DifficultyLevelAdapter(private val difficultyLevels: List<String>, private val viewModel: DifficultyLevelViewModel)
-    : RecyclerView.Adapter<DifficultyLevelAdapter.Holder>() {
+class DifficultyLevelAdapter(
+    private val difficultyLevels: List<String>,
+    private val viewModel: DifficultyLevelViewModel
+) : RecyclerView.Adapter<DifficultyLevelAdapter.Holder>() {
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -32,5 +34,4 @@ class DifficultyLevelAdapter(private val difficultyLevels: List<String>, private
             it.findNavController().navigate(R.id.action_difficultyLevelFragment_to_loadingFragment)
         }
     }
-
 }
